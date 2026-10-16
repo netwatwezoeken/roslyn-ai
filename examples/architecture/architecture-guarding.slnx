@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".github\workflows\pipeline.yml" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Architecture/Architecture.csproj" />
+    <Project Path="src/CleanArchitecture/CleanArchitecture.csproj" />
+  </Folder>
+</Solution>

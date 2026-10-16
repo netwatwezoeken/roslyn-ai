@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css" />
+		<link rel="stylesheet" href="dist/reveal.css" />
+		<link rel="stylesheet" href="dist/theme/nwwz.css" />
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="dist/plugin/highlight/nwwz.css" />
+		<style>
+			.reveal .fragment.permit-dim {
+				stroke: #bbbbbb;
+				transition: stroke 0.6s ease;
+			}
+
+			.reveal .fragment.permit-dim.visible {
+				stroke: #333333;
+			}
+
+			.reveal:not(.overview) .slides > .research-slide {
+				top: 5px !important;
+				padding-top: 0;
+			}
+
+			.reveal .research-slide img {
+				display: block;
+				max-width: 100%;
+				max-height: 480px;
+				margin: 12px auto;
+				transition: max-height 0.3s ease;
+			}
+
+			.reveal .research-slide ul {
+				display: none;
+				font-size: 0.8em;
+			}
+
+			.reveal .research-slide:has(li.fragment.visible) img {
+				max-height: 340px;
+			}
+
+			.reveal .research-slide:has(li.fragment.visible) ul {
+				display: inline-block;
+			}
+
+			.reveal .install-slide h1 {
+				width: max-content;
+				white-space: nowrap;
+				position: relative;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+
+			.reveal .terminal {
+				margin: 32px auto 0;
+				border: 1px solid #555555;
+				border-radius: 12px;
+				background: #161616;
+				box-shadow: 0 16px 40px #00000055;
+				text-align: left;
+				overflow: hidden;
+			}
+
+			.reveal .terminal-bar {
+				padding: 12px 18px;
+				background: #303030;
+				color: #bbbbbb;
+				font: 16px monospace;
+			}
+
+			.reveal .terminal-controls {
+				display: inline-flex;
+				gap: 6px;
+				margin-right: 20px;
+			}
+
+			.reveal .terminal-controls span:nth-child(1) {
+				color: #ff5f57;
+			}
+
+			.reveal .terminal-controls span:nth-child(2) {
+				color: #febc2e;
+			}
+
+			.reveal .terminal-controls span:nth-child(3) {
+				color: #28c840;
+			}
+
+			.reveal .terminal pre {
+				width: auto;
+				margin: 0;
+				padding: 28px;
+				box-shadow: none;
+				color: #eeeeee;
+				font: 18px/1.7 monospace;
+				white-space: pre-wrap;
+				overflow-wrap: anywhere;
+			}
+
+			.reveal .terminal-prompt {
+				color: #4dba85;
+			}
+
+			.reveal pre.architecture-diagram {
+				width: 100%;
+				margin: 20px auto 0;
+				box-shadow: none;
+			}
+
+			.reveal .architecture-diagram svg {
+				display: block;
+				width: 100%;
+				height: 420px;
+				max-width: 100% !important;
+			}
+
+			.reveal .workflow-diagram .node > rect {
+				stroke: #4dba85 !important;
+			}
+
+			.reveal .workflow-diagram .edgeLabel,
+			.reveal .workflow-diagram .edgeLabel span,
+			.reveal .workflow-diagram .edgeLabel p,
+			.reveal .workflow-diagram .edgeLabel text,
+			.reveal .workflow-diagram .edgeLabel tspan {
+				color: #b8d7a3 !important;
+				fill: #b8d7a3 !important;
+			}
+
+			.reveal .workflow-diagram .edgeLabel text,
+			.reveal .workflow-diagram .edgeLabel tspan {
+				stroke: none !important;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.reveal .fragment.permit-dim,
+				.reveal .research-slide img {
+					transition: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1 style="font-size: 2.2em;">AI writes the code,</h1>
+					<h1 style="font-size: 2.2em;">Roslyn guards the rules</h1>
+					<br>
+					<span>Jos Hendriks { <span style="color: #d8a0df;">.NET wat we zoeken</span> }</span>
+					<aside class="notes">
+						<ul>
+							<li>Cmd+F1 to switch screens</li>
+							<li>F: fullscreen</li>
+							<li>S: speaker notes</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Static code analysis</h1>
+					<br />
+					<h2 class="fragment" style="color: #4dba85;">catch possible bugs</h2>
+					<h2 class="fragment" style="color: #4dba85;">identify security risk</h2>
+					<h2 class="fragment" style="color: #4dba85;">keep code maintainable</h2>
+					<aside class="notes">
+						That last one is interesting because that, in turn will prevent bugs, and security issues
+					</aside>
+				</section>
+
+				<section>
+					<h1>Linters result in indicators</h1>
+					<br />
+					<h2 class="fragment" style="color: #4dba85;">too many lines of code</h2>
+					<h2 class="fragment" style="color: #4dba85;">high complexity</h2>
+					<h2 class="fragment" style="color: #4dba85;">too many parameters</h2>
+				</section>
+
+				<section>
+					<h1>C# .NET has Roslyn</h1>
+					<br />
+					<h2 class="fragment" style="color: #4dba85;">compiler</h2>
+					<h2 class="fragment" style="color: #4dba85;">analyzer (linter)</h2>
+					<h2 class="fragment" style="color: #4dba85;">fixer</h2>
+					<aside class="notes">
+						A quick demo
+					</aside>
+				</section>
+
+<!--				<section>
+					<h1>Just let the AI figure it out?</h1>
+					<img class="r-stretch"  data-src="assets/indicators.jpeg">
+				</section>-->
+
+				<section>
+					<h1>About me</h1>
+					<br /><h4 style="color: #4dba85;">Jos Hendriks</h4>
+					<h4>dad | husband | cyclist | metalhead</h4>
+					<h4 style="color: #4dba85;">Independent tech lead, technical coach, software architect</h4>
+					<h4>25 years in software in many different industries</h4>
+
+					<br /><span>✉️ jos@netwatwezoeken.nl</span>
+					<br /><span>📃 netwatwezoeken.nl</span>
+				</section>
+
+				<section aria-label="A form">
+					<h1 style="font-size: 2.0em;">Imagine a form</h1>
+					<br/>
+					<svg viewBox="0 0 300 390" role="img" aria-label="Form with eleven question lines, the first six darkened" style="display: block; height: 350px; margin: 0 auto;">
+						<rect x="1" y="1" width="298" height="388" rx="12" fill="#222222" stroke="#4dba85" stroke-width="2" />
+						<text x="150" y="40" fill="#4dba85" font-family="inherit" font-size="26" text-anchor="middle">Form</text>
+						<g transform="translate(0 40)" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+							<path d="M 30 40 H 270" />
+							<path d="M 30 67 H 270" />
+							<path d="M 30 94 H 270" />
+							<path d="M 30 121 H 270" />
+							<path d="M 30 148 H 270" />
+							<path d="M 30 175 H 270" />
+							<path d="M 30 202 H 270" />
+							<path d="M 30 229 H 270" />
+							<path d="M 30 256 H 270" />
+							<path d="M 30 283 H 270" />
+							<path d="M 30 310 H 270" />
+						</g>
+					</svg>
+					<br/>
+					<p style="color: #4dba85;">11 questions is a lot. It's is too complex</p>
+				</section>
+
+				<section>
+					<h1>We need a rule</h1>
+					<br />
+					<p class="fragment">Research shows that forms with more than 6 questions are too cumbersome to fill in.</p>
+					<div class="fragment">
+						<p>Council decides that each form shall have <span style="color: #4dba85;">a maximum of 6 questions</span></p>
+					</div>
+					<aside class="notes">
+						Counsil, government, etc
+					</aside>
+				</section>
+
+				<section aria-label="Now we have a rule!">
+					<h1 style="font-size: 2.0em;">With a rule we can surely solve this</h1>
+					<br/>
+					<svg viewBox="0 0 300 390" role="img" aria-label="Form with eleven question lines, the first six darkened" style="display: block; height: 350px; margin: 0 auto;">
+						<rect x="1" y="1" width="298" height="388" rx="12" fill="#222222" stroke="#4dba85" stroke-width="2" />
+						<text x="150" y="40" fill="#4dba85" font-family="inherit" font-size="26" text-anchor="middle">Form</text>
+						<g transform="translate(0 40)" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+							<path d="M 30 40 H 270" />
+							<path d="M 30 67 H 270" />
+							<path d="M 30 94 H 270" />
+							<path d="M 30 121 H 270" />
+							<path d="M 30 148 H 270" />
+							<path d="M 30 175 H 270" />
+							<path d="M 30 202 H 270" />
+							<path d="M 30 229 H 270" />
+							<path d="M 30 256 H 270" />
+							<path d="M 30 283 H 270" />
+							<path d="M 30 310 H 270" />
+						</g>
+					</svg>
+					<br/>
+					<p style="color: #4dba85;">Right?</p>
+				</section>
+
+				<section aria-label="If 6 is the rule then the easy way out is">
+					<h1 style="font-size: 1.5em;">Well, maybe</h1>
+					<br/>
+					<svg viewBox="0 80 920 340" role="img" aria-labelledby="permit-split-title" style="display: block; width: 100%; margin: 12px auto;">
+						<g fill="#bbbbbb" font-family="inherit" font-size="20" text-anchor="middle">
+							<text x="300" y="215" font-size="54">→</text>
+						</g>
+						<g transform="translate(20 95) scale(1.15)">
+							<rect width="180" height="230" rx="10" fill="#222222" stroke="#4dba85" stroke-width="2" />
+							<g stroke="#bbbbbb" stroke-width="2" stroke-linecap="round">
+								<path d="M 20 25 H 160" />
+								<path d="M 20 43 H 160" />
+								<path d="M 20 61 H 160" />
+								<path d="M 20 79 H 160" />
+								<path d="M 20 97 H 160" />
+								<path d="M 20 115 H 160" />
+								<path d="M 20 133 H 160" />
+								<path d="M 20 151 H 160" />
+								<path d="M 20 169 H 160" />
+								<path d="M 20 187 H 160" />
+								<path d="M 20 205 H 160" />
+							</g>
+						</g>
+						<g font-family="inherit" text-anchor="middle">
+							<g transform="translate(430 95) scale(1.15)">
+								<rect width="160" height="230" rx="10" fill="#222222" stroke="#d8a0df" stroke-width="2" />
+								<text x="80" y="40" fill="#d8a0df" font-size="26">Form A</text>
+								<path d="M 20 75 H 140 M 20 100 H 140 M 20 125 H 140 M 20 150 H 140 M 20 175 H 140" stroke="#bbbbbb" stroke-width="2" stroke-linecap="round" />
+							</g>
+							<g transform="translate(650 95) scale(1.15)">
+								<rect width="160" height="230" rx="10" fill="#222222" stroke="#b8d7a3" stroke-width="2" />
+								<text x="80" y="40" fill="#b8d7a3" font-size="26">Form B</text>
+								<path d="M 20 75 H 140 M 20 100 H 140 M 20 125 H 140 M 20 150 H 140 M 20 175 H 140 M 20 200 H 140" stroke="#bbbbbb" stroke-width="2" stroke-linecap="round" />
+							</g>
+							<text x="123.5" y="400" fill="#4dba85" font-size="22">11 questions</text>
+							<text x="522" y="400" fill="#d8a0df" font-size="22">5 questions</text>
+							<text x="742" y="400" fill="#b8d7a3" font-size="22">6 questions</text>
+						</g>
+					</svg>
+					<br/>
+					<p style="color: #4dba85; font-size: 0.8em;">Rule satisfied, but is it less complex?</p>
+				</section>
+				<section>
+					<section aria-label="Permit application: question lines darken on advance">
+						<h1 style="font-size: 2.0em;">While actually</h1>
+						<br/>
+						<svg viewBox="0 0 300 390" role="img" aria-label="Form with eleven question lines; five lines darken on the next advance" style="display: block; height: 350px; margin: 0 auto;">
+							<rect x="1" y="1" width="298" height="388" rx="12" fill="#222222" stroke="#4dba85" stroke-width="2" />
+							<text x="150" y="40" fill="#4dba85" font-family="inherit" font-size="26" text-anchor="middle">Form</text>
+							<g transform="translate(0 40)" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+								<path d="M 30 40 H 270" />
+							</g>
+							<g class="fragment custom permit-dim" data-fragment-index="0" transform="translate(0 40)" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+								<path d="M 30 67 H 270" />
+								<path d="M 30 94 H 270" />
+							</g>
+							<g transform="translate(0 40)" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+								<path d="M 30 121 H 270" />
+							</g>
+							<g class="fragment custom permit-dim" data-fragment-index="0" transform="translate(0 40)" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+								<path d="M 30 148 H 270" />
+								<path d="M 30 175 H 270" />
+							</g>
+							<g transform="translate(0 40)" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+								<path d="M 30 202 H 270" />
+								<path d="M 30 229 H 270" />
+							</g>
+							<g class="fragment custom permit-dim" data-fragment-index="0" transform="translate(0 40)" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+								<path d="M 30 256 H 270" />
+							</g>
+							<g transform="translate(0 40)" stroke="#bbbbbb" stroke-width="3" stroke-linecap="round">
+								<path d="M 30 283 H 270" />
+								<path d="M 30 310 H 270" />
+							</g>
+						</svg>
+						<br/>
+						<p style="color: #4dba85;"> </p>
+						<aside class="notes">
+							Half of the questions are redundant because information is already known!
+						</aside>
+					</section>
+
+					<section>
+						<h1>Context matters</h1>
+						<br />
+						<p class="fragment">300 km cycling is a bit much for one day</p>
+						<div class="fragment">
+							<p style="color: #4dba85;">But 2 or 3 days of cycling would be even better!</p>
+						</div>
+						<aside class="notes">
+						</aside>
+					</section>
+
+					<section>
+						<h1>When rules are measures....</h1>
+						<blockquote class="fragment">
+							<p>
+								When a measure becomes a target, it ceases to be a good measure.
+							</p>
+							<footer>
+								— <cite>Charles Goodhart</cite>
+							</footer>
+						</blockquote>
+					</section>
+				</section>
+				<section class="research-slide">
+					<h1>Tests on AI</h1>
+
+					<img data-src="assets/research.png">
+					<p>
+						<a href="https://github.com/LiinaSuoniemi/prompt-vs-metric-eval">https://github.com/LiinaSuoniemi/prompt-vs-metric-eval</a>
+					</p>
+
+					<aside class="notes">
+						<p>LEE-nah SWOH-nee-eh-mee</p>
+						<ul>
+							<li>The bare metric gets gamed</li>
+							<li>The stronger model gamed it more, not less</li>
+							<li>Coaching fixed it on both</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h1>Habit hooks</h1>
+					<svg width="96" height="96" viewBox="0 0 256 256" role="img" aria-label="Habit Hooks">
+						<path fill="#f42372" d="M106.13,127.91c.42-.17.84-.34,1.24-.52,10.66-4.66,17.31-15.47,17.31-27.1v-52.33c0-11.23-9.2-20.29-20.38-19.35-9.63.81-17.19,8.88-17.19,18.72v61.79c0,.06-.05.1-.1.1h-21.9c-.06,0-.1-.05-.1-.1v-61.15c0-11.23-9.2-20.29-20.38-19.35-9.63.81-17.19,8.88-17.19,18.72v160.72c0,11.23,9.2,20.29,20.38,19.35,9.63-.81,17.19-8.88,17.19-18.72v-61.79c0-.06.05-.1.1-.1h21.9c.06,0,.1.05.1.1v61.15c0,11.23,9.2,20.29,20.38,19.35,9.63-.81,17.19-8.88,17.19-18.72v-52.97c0-11.63-6.65-22.44-17.31-27.1-.41-.18-.82-.35-1.24-.52-.08-.03-.08-.15,0-.18Z"></path>
+						<path fill="currentColor" d="M208.09,28.61c-9.43.82-17.1,9.69-17.1,19.15v61.45s-22.1,0-22.1,0v-61.45c0-9.46-7.67-18.33-17.1-19.15-11.14-.97-20.48,7.78-20.48,18.71v52.88c0,12.13,7.25,23.21,18.52,27.69.09.04.18.07.27.11-.09.04-.18.07-.27.11-11.27,4.48-18.52,15.56-18.52,27.69v52.44c0,9.46,7.67,18.33,17.1,19.15,11.14.97,20.48-7.78,20.48-18.71v-61.89h22.1v61.45c0,9.46,7.67,18.33,17.1,19.15,11.14.97,20.48-7.78,20.48-18.71V47.32c0-10.93-9.34-19.69-20.48-18.71Z"></path>
+					</svg>
+					<p>
+						<a href="https://habit-hooks.com/">https://habit-hooks.com/</a>
+					</p>
+					<h2 class="fragment" style="color: #4dba85;">Linter feedback can be a trigger</h2>
+					<h2 class="fragment" style="color: #4dba85;">A trigger results in additional coaching</h2>
+					<h2 class="fragment" style="color: #4dba85;">No specific C# support 😕</h2>
+					<aside class="notes">
+						<p>As a human you build habits. The habit might trigger in certain cases. LLM don't have habits.</p>
+					</aside>
+				</section>
+
+				<section class="install-slide">
+					<h1>Introducing diagnostic-hooks</h1>
+					<h3 style="color: #4dba85;">A Habit Hook implementation based on Roslyn</h3>
+					<div class="terminal" role="region" aria-label="Shell showing diagnostic-hooks installation">
+						<div class="terminal-bar"><span class="terminal-controls" aria-hidden="true"><span>●</span> <span>●</span> <span>●</span></span>Terminal</div>
+						<pre><span class="terminal-prompt">$</span> dotnet tool install -g diagnostic-hooks
+
+You can invoke the tool using the following command: diagnostic-hooks
+Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
+					</div>
+					<aside class="notes">
+						<p>Demo time!</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Custom Roslyn analyzers</h1>
+
+					Maybe just a screenshot or gif here and move on to the next topic
+
+					<aside class="notes">
+						Demo of async/await custom Roslyn analyzer
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>Taking it further</h1>
+
+						With Roslyn you can also analyze structure and dependencies
+
+						<aside class="notes">
+							Demo of async/await custom Roslyn analyzer
+						</aside>
+					</section>
+					<section>
+						<h1>Workflow</h1>
+
+						<div style="display: flex; justify-content: center;">
+	<pre class="mermaid architecture-diagram workflow-diagram">
+%%{init: {'theme': 'base','block': {'padding': 24},'htmlLabels': false,'flowchart': {'htmlLabels': false},'themeVariables': {'background': '#181818',   'mainBkg': '#181818','primaryColor': '#2a2a2a',    'primaryTextColor': '#bbbbbb','primaryBorderColor': '#b8d7a3','secondaryColor': '#222222','secondaryTextColor': '#bbbbbb','secondaryBorderColor': '#b8d7a3','tertiaryColor': '#303030',
+'tertiaryTextColor': '#bbbbbb','tertiaryBorderColor': '#4dba85',       'lineColor': '#d8a0df','textColor': '#bbbbbb','titleColor': '#b8d7a3','nodeBorder': '#b8d7a3','clusterBkg': '#202020','clusterBorder': '#4dba85','edgeLabelBackground': '#181818','signalColor': '#d8a0df','signalTextColor': '#bbbbbb'}}}%%
+block-beta
+    columns 3
+    space ArchitectureDocument["Architecture document"] space
+    space:3
+    DiagHook["Rule violations"] space AI
+    space:3
+    space Code space
+
+    ArchitectureDocument -- "refrenced" --> AI
+    AI -- "generates" --> Code
+    Code -- "might results" --> DiagHook
+    DiagHook -- "get augmented with" --> ArchitectureDocument
+	</pre>
+						</div>
+					</section>
+					<section>
+						<h1>An example</h1>
+
+						<div style="display: flex; justify-content: center;">
+	<pre class="mermaid architecture-diagram">
+%%{init: {'theme': 'base','themeVariables': {'background': '#181818',   'mainBkg': '#181818','primaryColor': '#2a2a2a',    'primaryTextColor': '#bbbbbb','primaryBorderColor': '#b8d7a3','secondaryColor': '#222222','secondaryTextColor': '#bbbbbb','secondaryBorderColor': '#b8d7a3','tertiaryColor': '#303030',
+'tertiaryTextColor': '#bbbbbb','tertiaryBorderColor': '#4dba85',       'lineColor': '#d8a0df','textColor': '#bbbbbb','titleColor': '#b8d7a3','nodeBorder': '#b8d7a3','clusterBkg': '#202020','clusterBorder': '#4dba85','edgeLabelBackground': '#181818','signalColor': '#d8a0df','signalTextColor': '#bbbbbb'}}}%%
+		flowchart
+    Infrastructure --> Domain
+    Infrastructure --> Application
+    Presentation --> Application
+    Presentation --> Domain
+    Application --> Domain
+	</pre>
+						</div>
+
+						<aside class="notes">
+							Demo Structure analyzer with diagnostic-hooks
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h1 style="font-size: 1.9em;">To conclude</h1>
+					<br />
+					<div >
+						<div>
+							<h3 style="color: #d8a0df;">Rules are gamed easily</h3>
+							<br/>
+						</div>
+						<div>
+							<h3 style="color: #d8a0df;">Targeted coaching helps</h3>
+							<br/>
+						</div>
+						<div>
+							<h3 style="color: #d8a0df;">Roslyn is still great</h3>
+							<br/>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2>Thanks!</h2>
+					
+					<div style="display:flex; gap:1.5em; justify-content:center; align-items:flex-start; font-size:0.8em;">
+						<div style="text-align:center;">
+							<img src="assets/feedback.png" width="300" />
+						</div>
+					</div>
+					<div>
+						<a href="https://roslyn-ai.netwatwezoeken.nl/">https://roslyn-ai.netwatwezoeken.nl/</a>
+						<br /><br />
+						<a href="https://github.com/netwatwezoeken/roslyn-ai">https://github.com/netwatwezoeken/roslyn-ai</a>
+					</div>
+
+<br />
+					<span>Jos Hendriks { <span style="color: #d8a0df;">.NET wat we zoeken</span> }</span>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="dist/plugin/notes.js"></script>
+		<script src="dist/plugin/markdown.js"></script>
+		<script src="dist/plugin/highlight.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/loadcontent/plugin.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@11.12.3/plugin/mermaid/mermaid.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealLoadContent, RevealMermaid],
+				mermaid: {  },
+				mermaidPlugin: {
+					afterRender: (element) => {
+						if (!element.classList.contains('workflow-diagram')) return;
+
+						// Block diagrams have fixed positions but no curved-edge option.
+						// Bend each arrow outward to emphasize the clockwise loop.
+						const ports = ['ArchitectureDocument', 'Code'].map((id) => {
+							const node = element.querySelector(`[id="${id}"]`);
+							const box = node.getBBox();
+							const matrix = node.transform.baseVal.consolidate().matrix;
+							const left = new DOMPoint(box.x, box.y + box.height / 2).matrixTransform(matrix);
+							const right = new DOMPoint(box.x + box.width, box.y + box.height / 2).matrixTransform(matrix);
+							return {
+								incoming: id === 'Code' ? right : left,
+								outgoing: id === 'Code' ? left : right,
+								direction: id === 'Code' ? -1 : 1,
+								touches: (point) =>
+									point.x >= left.x - 16 && point.x <= right.x + 16 &&
+									Math.abs(point.y - left.y) <= box.height / 2 + 16,
+							};
+						});
+
+						element.querySelectorAll('path.flowchart-link').forEach((path) => {
+							const start = path.getPointAtLength(0);
+							const end = path.getPointAtLength(path.getTotalLength());
+							const dx = end.x - start.x;
+							const dy = end.y - start.y;
+							const cx = (start.x + end.x) / 2 + dy * 0.25;
+							const cy = (start.y + end.y) / 2 - dx * 0.25;
+							const source = ports.find((port) => port.touches(start));
+							const target = ports.find((port) => port.touches(end));
+							if (source) {
+								const anchor = source.outgoing;
+								const bend = Math.max(40, Math.abs(end.x - anchor.x) * 0.6);
+								path.setAttribute('d', `M ${anchor.x},${anchor.y} C ${anchor.x + bend * source.direction},${anchor.y} ${cx},${cy} ${end.x},${end.y}`);
+							} else if (target) {
+								const anchor = target.incoming;
+								const bend = Math.max(40, Math.abs(anchor.x - start.x) * 0.6);
+								path.setAttribute('d', `M ${start.x},${start.y} C ${cx},${cy} ${anchor.x - bend * target.direction},${anchor.y} ${anchor.x},${anchor.y}`);
+							} else {
+								path.setAttribute('d', `M ${start.x},${start.y} Q ${cx},${cy} ${end.x},${end.y}`);
+							}
+							path.setAttribute('stroke-linecap', 'round');
+						});
+					},
+				},
+			});
+		</script>
+	</body>
+</html>

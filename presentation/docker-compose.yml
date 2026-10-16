@@ -1,0 +1,16 @@
+services:
+  sk-presentation:
+    image: ghcr.io/netwatwezoeken/roslyn-ai-presentation
+    restart: unless-stopped
+    labels:
+      - traefik.http.routers.roslyn-ai.rule=Host(`roslyn-ai.netwatwezoeken.nl`)
+      - traefik.http.routers.roslyn-ai.tls=true
+      - traefik.docker.network=proxy
+      #- traefik.http.routers.roslyn-ai.middlewares=tinyauth-nwwz@file
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: proxy
+    external: true
