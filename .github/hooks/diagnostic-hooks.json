@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "hooks": {
+    "postToolUse": [
+      {
+        "type": "command",
+        "matcher": "bash|powershell",
+        "exec": "node",
+        "args": [
+          ".github/hooks/diagnostic-hooks.mjs"
+        ],
+        "cwd": ".",
+        "timeoutSec": 120
+      }
+    ]
+  }
+}

@@ -32,4 +32,4 @@ bld/
 .junie
 .serena
 *.user
-examples/todo-app/.playwright-cli
+report.json
