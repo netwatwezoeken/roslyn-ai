@@ -490,45 +490,55 @@ Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
 
 							<rect x="250" y="20" width="440" height="440" rx="18" fill="#202020" stroke="var(--nwwz-blue)" stroke-width="2" />
 							<g class="flow-arrow">
-								<path d="M 200 60 H 242" />
-								<path d="M 470 80 V 97" />
-								<path d="M 470 185 V 217" />
-								<path d="M 470 305 V 337" />
-								<path d="M 665 385 H 742" />
-								<path d="M 180 265 H 267" />
+								<path class="fragment" data-fragment-index="1" d="M 200 60 H 242" />
+								<path class="fragment" data-fragment-index="2" d="M 470 80 V 97" />
+								<path class="fragment" data-fragment-index="3" d="M 470 185 V 217" />
+								<path class="fragment" data-fragment-index="4" d="M 470 305 V 337" />
+								<path class="fragment" data-fragment-index="5" d="M 665 385 H 742" />
+								<path class="fragment" data-fragment-index="4" d="M 180 385 H 267" />
+								<path class="fragment" data-fragment-index="3" d="M 180 265 H 267" />
 							</g>
 
 							<g font-family="inherit" font-size="22" fill="#bbbbbb" text-anchor="middle">
-								<rect class="flow-box" stroke="var(--nwwz-green-ligth)" x="10" y="15" width="190" height="90" rx="12" />
-								<text class="flow-command" x="105" y="52">dotnet build</text>
-								<text class="flow-detail" x="105" y="80">run by LLM</text>
+								<rect class="flow-box fragment" data-fragment-index="1" stroke="var(--nwwz-green-ligth)" x="10" y="15" width="190" height="90" rx="12" />
+								<text class="flow-command fragment" data-fragment-index="1" x="105" y="52">dotnet build</text>
+								<text class="flow-detail fragment" data-fragment-index="1" x="105" y="80">run by LLM</text>
 
-								<text x="470" y="66" fill="#b8d7a3">hook gets triggered</text>
-								<rect class="flow-box" stroke="var(--nwwz-green-dark)" x="275" y="105" width="390" height="80" rx="12" />
-								<rect class="flow-box" stroke="var(--nwwz-green-dark)" x="275" y="225" width="390" height="80" rx="12" />
-								<rect class="flow-box" stroke="var(--nwwz-green-dark)" x="275" y="345" width="390" height="80" rx="12" />
+								<text class="fragment" data-fragment-index="1" x="470" y="66" fill="#b8d7a3">hook gets triggered</text>
+								<rect class="flow-box fragment" data-fragment-index="2" stroke="var(--nwwz-green-dark)" x="275" y="105" width="390" height="80" rx="12" />
+								<rect class="flow-box fragment" data-fragment-index="3" stroke="var(--nwwz-green-dark)" x="275" y="225" width="390" height="80" rx="12" />
+								<rect class="flow-box fragment" data-fragment-index="4" stroke="var(--nwwz-green-dark)" x="275" y="345" width="390" height="80" rx="12" />
 								<g fill="var(--nwwz-green-light)">
-									<circle cx="302" cy="145" r="15" />
-									<circle cx="302" cy="265" r="15" />
-									<circle cx="302" cy="385" r="15" />
+									<circle class="fragment" data-fragment-index="2" cx="302" cy="145" r="15" />
+									<circle class="fragment" data-fragment-index="3" cx="302" cy="265" r="15" />
+									<circle class="fragment" data-fragment-index="4" cx="302" cy="385" r="15" />
 								</g>
 								<g fill="#181818" font-size="18" dominant-baseline="middle">
-									<text x="302" y="145">1</text>
-									<text x="302" y="265">2</text>
-									<text x="302" y="385">3</text>
+									<text class="fragment" data-fragment-index="2" x="302" y="145">1</text>
+									<text class="fragment" data-fragment-index="3" x="302" y="265">2</text>
+									<text class="fragment" data-fragment-index="4" x="302" y="385">3</text>
 								</g>
 								<g text-anchor="start">
-									<text class="flow-command" x="330" y="137">dotnet format</text>
-									<text class="flow-detail" x="330" y="165">Detect issues</text>
-									<text class="flow-command" x="330" y="257">diagnostic-hooks</text>
-									<text class="flow-detail" x="330" y="285">Match issues against guides</text>
-									<text x="330" y="391">Add applicable guides</text>
+									<text class="flow-command fragment" data-fragment-index="2" x="330" y="137">dotnet format</text>
+									<text class="flow-detail fragment" data-fragment-index="2" x="330" y="165">Detect issues</text>
+									<text class="flow-command fragment" data-fragment-index="3" x="330" y="257">diagnostic-hooks</text>
+									<text class="flow-detail fragment" data-fragment-index="3" x="330" y="285">Match issues against guides</text>
+									<text class="flow-command fragment" data-fragment-index="4" x="330" y="377">diagnostic-hooks</text>
+									<text class="flow-detail fragment" data-fragment-index="4" x="330" y="405">Add applicable guides</text>
+								</g>
+								
+								<g aria-label="Stack of guides" class="fragment" data-fragment-index="3" transform="translate(20 -170)">
+									<path d="M 56 347 H 133 L 155 369 V 451 Q 155 457 149 457 H 56 Q 50 457 50 451 V 353 Q 50 347 56 347 Z" fill="#2a2a2a" stroke="var(--nwwz-blue)" stroke-width="2" />
+									<path d="M 133 347 V 369 H 155" fill="none" stroke="var(--nwwz-blue)" stroke-width="2" />
+									<path d="M 133 347 V 369 H 155" fill="none" stroke="var(--nwwz-blue)" stroke-width="2" />
+									<path d="M 68 389 H 137 M 68 407 H 137 M 68 425 H 119" stroke="#bbbbbb" stroke-width="2" stroke-linecap="round" />
+									<text x="95" y="488" fill="var(--nwwz-blue)">smells.json</text>
 								</g>
 
-								<rect class="flow-box" stroke="var(--nwwz-green-ligth)" x="750" y="340" width="200" height="90" rx="12" />
-								<text x="850" y="392">LLM acts</text>
+								<rect class="flow-box fragment" data-fragment-index="5" stroke="var(--nwwz-green-ligth)" x="750" y="340" width="200" height="90" rx="12" />
+								<text class="fragment" data-fragment-index="5" x="850" y="392">LLM acts</text>
 
-								<g aria-label="Stack of guides" transform="translate(0 -130)">
+								<g aria-label="Stack of guides" class="fragment" data-fragment-index="4" transform="translate(0 20)">
 									<rect x="75" y="323" width="105" height="110" rx="6" fill="#202020" stroke="var(--nwwz-blue)" stroke-width="2" />
 									<rect x="62" y="335" width="105" height="110" rx="6" fill="#252525" stroke="var(--nwwz-blue)" stroke-width="2" />
 									<path d="M 56 347 H 133 L 155 369 V 451 Q 155 457 149 457 H 56 Q 50 457 50 451 V 353 Q 50 347 56 347 Z" fill="#2a2a2a" stroke="var(--nwwz-blue)" stroke-width="2" />
