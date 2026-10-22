@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src\AsyncResult\AsyncResult.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/Example/">
+    <Project Path="tests\Example\Example\Example.csproj" />
+  </Folder>
+</Solution>
