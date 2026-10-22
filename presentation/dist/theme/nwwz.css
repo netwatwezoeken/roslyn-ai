@@ -59,6 +59,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * GLOBAL STYLES
  *********************************************/
 :root {
+  --nwwz-blue: #569cd6;
+  --nwwz-green-dark: #4dba85;
+  --nwwz-green-ligth: #b8d7a3;
+  --nwwz-purple: #d8a0df;
   --r-background-color: #181818;
   --r-main-font: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Segoe UI Emoji, Segoe UI Symbol, Apple Color Emoji, Roboto, Helvetica, Arial, sans-serif;
   --r-main-font-size: 32px;
@@ -85,6 +89,19 @@ section.has-light-background, section.has-light-background h1, section.has-light
   --r-selection-color: #fff;
   --r-overlay-element-bg-color: 240, 240, 240;
   --r-overlay-element-fg-color: 0, 0, 0;
+}
+
+.reveal .nwwz-blue {
+  color: var(--nwwz-blue);
+}
+.reveal .nwwz-green-dark {
+  color: var(--nwwz-green-dark);
+}
+.reveal .nwwz-green-ligth {
+  color: var(--nwwz-green-ligth);
+}
+.reveal .nwwz-purple {
+  color: var(--nwwz-purple);
 }
 
 .reveal-viewport {

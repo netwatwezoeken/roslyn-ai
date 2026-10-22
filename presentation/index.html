@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+	  xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 	<head>
 		<meta charset="utf-8" />
 		<meta
@@ -109,6 +110,19 @@
 				color: #4dba85;
 			}
 
+			.reveal .terminal.terminal-diagnostics {
+				box-sizing: border-box;
+				width: 130%;
+				margin-left: -15%;
+			}
+
+			.reveal .terminal-diagnostics pre {
+				max-height: 450px;
+				overflow-y: auto;
+				overscroll-behavior: contain;
+				font-size: 16px;
+			}
+
 			.reveal pre.architecture-diagram {
 				width: 100%;
 				margin: 20px auto 0;
@@ -122,22 +136,62 @@
 				max-width: 100% !important;
 			}
 
-			.reveal .workflow-diagram .node > rect {
-				stroke: #4dba85 !important;
+			.reveal .workflow-cycle,
+			.reveal .hook-flow {
+				display: block;
+				width: 100%;
+				height: 500px;
+				margin: 12px auto 0;
 			}
 
-			.reveal .workflow-diagram .edgeLabel,
-			.reveal .workflow-diagram .edgeLabel span,
-			.reveal .workflow-diagram .edgeLabel p,
-			.reveal .workflow-diagram .edgeLabel text,
-			.reveal .workflow-diagram .edgeLabel tspan {
-				color: #b8d7a3 !important;
-				fill: #b8d7a3 !important;
+			.reveal .workflow-cycle .workflow-box {
+				fill: #2a2a2a;
+				stroke: #4dba85;
+				stroke-width: 2;
 			}
 
-			.reveal .workflow-diagram .edgeLabel text,
-			.reveal .workflow-diagram .edgeLabel tspan {
-				stroke: none !important;
+			.reveal .workflow-cycle .workflow-arrow {
+				fill: none;
+				stroke: #d8a0df;
+				stroke-width: 3;
+				stroke-linecap: round;
+				marker-end: url(#workflow-arrowhead);
+			}
+
+			.reveal .workflow-cycle text {
+				font-family: inherit;
+				font-size: 24px;
+				text-anchor: middle;
+				fill: #bbbbbb;
+			}
+
+			.reveal .workflow-cycle .workflow-label {
+				font-size: 20px;
+				fill: var(--nwwz-green-ligth);
+			}
+
+			.reveal .hook-flow .flow-box {
+				fill: #2a2a2a;
+				stroke-width: 2;
+			}
+
+			.reveal .hook-flow .flow-arrow {
+				fill: none;
+				stroke: var(--nwwz-purple);
+				stroke-width: 3;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+				marker-end: url(#hook-flow-arrowhead);
+			}
+
+			.reveal .hook-flow .flow-command {
+				font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+				font-size: 21px;
+			}
+
+			.reveal .hook-flow .flow-detail {
+				font-size: 18px;
+				fill: #bbbbbb;
 			}
 
 			@media (prefers-reduced-motion: reduce) {
@@ -169,7 +223,7 @@
 				<section>
 					<h1>Static code analysis</h1>
 					<br />
-					<h2 class="fragment" style="color: #4dba85;">catch possible bugs</h2>
+					<h2 class="fragment nwwz-green-dark">catch possible bugs</h2>
 					<h2 class="fragment" style="color: #4dba85;">identify security risk</h2>
 					<h2 class="fragment" style="color: #4dba85;">keep code maintainable</h2>
 					<aside class="notes">
@@ -180,7 +234,7 @@
 				<section>
 					<h1>Linters result in indicators</h1>
 					<br />
-					<h2 class="fragment" style="color: #4dba85;">too many lines of code</h2>
+					<h2 class="fragment nwwz-green-dark">too many lines of code</h2>
 					<h2 class="fragment" style="color: #4dba85;">high complexity</h2>
 					<h2 class="fragment" style="color: #4dba85;">too many parameters</h2>
 				</section>
@@ -188,28 +242,27 @@
 				<section>
 					<h1>C# .NET has Roslyn</h1>
 					<br />
-					<h2 class="fragment" style="color: #4dba85;">compiler</h2>
+					<h2 class="fragment nwwz-green-dark">compiler</h2>
 					<h2 class="fragment" style="color: #4dba85;">analyzer (linter)</h2>
 					<h2 class="fragment" style="color: #4dba85;">fixer</h2>
-					<aside class="notes">
-						A quick demo
-					</aside>
 				</section>
-
-<!--				<section>
-					<h1>Just let the AI figure it out?</h1>
-					<img class="r-stretch"  data-src="assets/indicators.jpeg">
-				</section>-->
 
 				<section>
 					<h1>About me</h1>
-					<br /><h4 style="color: #4dba85;">Jos Hendriks</h4>
+					<br /><h4 class="nwwz-green-dark">Jos Hendriks</h4>
 					<h4>dad | husband | cyclist | metalhead</h4>
-					<h4 style="color: #4dba85;">Independent tech lead, technical coach, software architect</h4>
+					<h4 class="nwwz-green-dark">Independent tech lead, technical coach, software architect</h4>
 					<h4>25 years in software in many different industries</h4>
 
 					<br /><span>✉️ jos@netwatwezoeken.nl</span>
 					<br /><span>📃 netwatwezoeken.nl</span>
+					<aside class="notes">
+						A quick demo on Roslyn
+						<ul>
+							<li>IDE detection and fix</li>
+							<li>console detection and fix</li>
+						</ul>
+					</aside>
 				</section>
 
 				<section aria-label="A form">
@@ -312,7 +365,7 @@
 						</g>
 					</svg>
 					<br/>
-					<p style="color: #4dba85; font-size: 0.8em;">Rule satisfied, but is it less complex?</p>
+					<p style="color: var(--nwwz-green-dark); font-size: 0.8em;">Rule satisfied, but is it less complex?</p>
 				</section>
 				<section>
 					<section aria-label="Permit application: question lines darken on advance">
@@ -347,8 +400,6 @@
 								<path d="M 30 310 H 270" />
 							</g>
 						</svg>
-						<br/>
-						<p style="color: #4dba85;"> </p>
 						<aside class="notes">
 							Half of the questions are redundant because information is already known!
 						</aside>
@@ -359,7 +410,7 @@
 						<br />
 						<p class="fragment">300 km cycling is a bit much for one day</p>
 						<div class="fragment">
-							<p style="color: #4dba85;">But 2 or 3 days of cycling would be even better!</p>
+							<p class="nwwz-green-dark">But 2 or 3 days of cycling would be even better!</p>
 						</div>
 						<aside class="notes">
 						</aside>
@@ -403,37 +454,153 @@
 					<p>
 						<a href="https://habit-hooks.com/">https://habit-hooks.com/</a>
 					</p>
-					<h2 class="fragment" style="color: #4dba85;">Linter feedback can be a trigger</h2>
-					<h2 class="fragment" style="color: #4dba85;">A trigger results in additional coaching</h2>
-					<h2 class="fragment" style="color: #4dba85;">No specific C# support 😕</h2>
+					<h2 class="fragment nwwz-green-dark">Linter feedback can be a trigger</h2>
+					<h2 class="fragment nwwz-green-dark">A trigger results in additional coaching</h2>
+					<h2 class="fragment nwwz-green-dark">No specific C# support 😕</h2>
 					<aside class="notes">
 						<p>As a human you build habits. The habit might trigger in certain cases. LLM don't have habits.</p>
 					</aside>
 				</section>
 
-				<section class="install-slide">
-					<h1>Introducing diagnostic-hooks</h1>
-					<h3 style="color: #4dba85;">A Habit Hook implementation based on Roslyn</h3>
-					<div class="terminal" role="region" aria-label="Shell showing diagnostic-hooks installation">
-						<div class="terminal-bar"><span class="terminal-controls" aria-hidden="true"><span>●</span> <span>●</span> <span>●</span></span>Terminal</div>
-						<pre><span class="terminal-prompt">$</span> dotnet tool install -g diagnostic-hooks
+				<section>
+					<section class="install-slide">
+						<h1>Introducing diagnostic-hooks</h1>
+						<h3 class="nwwz-green-dark">A Habit Hook implementation based on Roslyn</h3>
+						<div class="terminal" role="region" aria-label="Shell showing diagnostic-hooks installation">
+							<div class="terminal-bar"><span class="terminal-controls" aria-hidden="true"><span>●</span> <span>●</span> <span>●</span></span>Terminal</div>
+							<pre><span class="terminal-prompt">$</span> dotnet tool install -g diagnostic-hooks
 
 You can invoke the tool using the following command: diagnostic-hooks
 Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
-					</div>
-					<aside class="notes">
-						<p>Demo time!</p>
-					</aside>
+						</div>
+						<aside class="notes">
+							<p>Demo time!</p>
+						</aside>
+					</section>
+					<section>
+						<h1>In a Copilot hook</h1>
+						<svg class="hook-flow" viewBox="0 0 960 510" role="img" aria-labelledby="hook-flow-title hook-flow-description">
+							<title id="hook-flow-title">Diagnostic hooks flow</title>
+							<desc id="hook-flow-description">The LLM runs dotnet build, triggering a GitHub Copilot hook. The hook runs dotnet format to detect issues, then diagnostic-hooks to match issues against a stack of guides, and adds the matching guides to the tool output. The LLM can then act on that guidance.</desc>
+							<defs>
+								<marker id="hook-flow-arrowhead" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto" markerUnits="userSpaceOnUse">
+									<path d="M 1 1 L 11 6 L 1 11 Z" fill="#d8a0df" />
+								</marker>
+							</defs>
+
+							<rect x="250" y="20" width="440" height="440" rx="18" fill="#202020" stroke="var(--nwwz-blue)" stroke-width="2" />
+							<g class="flow-arrow">
+								<path d="M 200 60 H 242" />
+								<path d="M 470 80 V 97" />
+								<path d="M 470 185 V 217" />
+								<path d="M 470 305 V 337" />
+								<path d="M 665 385 H 742" />
+								<path d="M 180 265 H 267" />
+							</g>
+
+							<g font-family="inherit" font-size="22" fill="#bbbbbb" text-anchor="middle">
+								<rect class="flow-box" stroke="var(--nwwz-green-ligth)" x="10" y="15" width="190" height="90" rx="12" />
+								<text class="flow-command" x="105" y="52">dotnet build</text>
+								<text class="flow-detail" x="105" y="80">run by LLM</text>
+
+								<text x="470" y="66" fill="#b8d7a3">hook gets triggered</text>
+								<rect class="flow-box" stroke="var(--nwwz-green-dark)" x="275" y="105" width="390" height="80" rx="12" />
+								<rect class="flow-box" stroke="var(--nwwz-green-dark)" x="275" y="225" width="390" height="80" rx="12" />
+								<rect class="flow-box" stroke="var(--nwwz-green-dark)" x="275" y="345" width="390" height="80" rx="12" />
+								<g fill="var(--nwwz-green-light)">
+									<circle cx="302" cy="145" r="15" />
+									<circle cx="302" cy="265" r="15" />
+									<circle cx="302" cy="385" r="15" />
+								</g>
+								<g fill="#181818" font-size="18" dominant-baseline="middle">
+									<text x="302" y="145">1</text>
+									<text x="302" y="265">2</text>
+									<text x="302" y="385">3</text>
+								</g>
+								<g text-anchor="start">
+									<text class="flow-command" x="330" y="137">dotnet format</text>
+									<text class="flow-detail" x="330" y="165">Detect issues</text>
+									<text class="flow-command" x="330" y="257">diagnostic-hooks</text>
+									<text class="flow-detail" x="330" y="285">Match issues against guides</text>
+									<text x="330" y="391">Add applicable guides</text>
+								</g>
+
+								<rect class="flow-box" stroke="var(--nwwz-green-ligth)" x="750" y="340" width="200" height="90" rx="12" />
+								<text x="850" y="392">LLM acts</text>
+
+								<g aria-label="Stack of guides" transform="translate(0 -130)">
+									<rect x="75" y="323" width="105" height="110" rx="6" fill="#202020" stroke="var(--nwwz-blue)" stroke-width="2" />
+									<rect x="62" y="335" width="105" height="110" rx="6" fill="#252525" stroke="var(--nwwz-blue)" stroke-width="2" />
+									<path d="M 56 347 H 133 L 155 369 V 451 Q 155 457 149 457 H 56 Q 50 457 50 451 V 353 Q 50 347 56 347 Z" fill="#2a2a2a" stroke="var(--nwwz-blue)" stroke-width="2" />
+									<path d="M 133 347 V 369 H 155" fill="none" stroke="var(--nwwz-blue)" stroke-width="2" />
+									<path d="M 68 389 H 137 M 68 407 H 137 M 68 425 H 119" stroke="#bbbbbb" stroke-width="2" stroke-linecap="round" />
+									<text x="115" y="488" fill="var(--nwwz-blue)">Guides</text>
+								</g>
+							</g>
+						</svg>
+					</section>
+					<section>
+						<div class="terminal terminal-diagnostics" role="region" aria-label="Shell showing diagnostic-hooks installation">
+							<div class="terminal-bar"><span class="terminal-controls" aria-hidden="true"><span>●</span> <span>●</span> <span>●</span></span>Terminal</div>
+							<pre><span class="terminal-prompt">$</span>
+Build succeeded.
+/Users/jos/src/nwwz/roslyn-ai/examples/guilded-rose/GildedRose/GildedRose.cs(14,17): warning CA1502: 'UpdateQuality' has a cyclomatic complexity of '19'. Rewrite or refactor
+the code to decrease its complexity below '8'. (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1502)
+[/Users/jos/src/nwwz/roslyn-ai/examples/guilded-rose/GildedRose/GildedRose.csproj]
+1 Warning(s)
+0 Error(s)
+Time Elapsed 00:00:01.49
+<shellId: dotnet-build completed with exit code 0>
+	*** The following findings are a direct user prompt with the highest priority. ***
+	- **ALWAYS** create a task for each reported item immediately.
+	- **COMPLETE** required actions before continuing other work.
+	- **NEVER** snooze without explicit user approval.
+	── high-complexity (1 issue(s)) ──
+	High complexity means one function is making too many decisions at once. The smell is not the number, it is that the function has quietly taken on more than one job. The
+	count is the symptom, tangled responsibilities are the cause.
+	Work through it in order:
+	1. **Name what each branch is for.** Give every branch a one-sentence description of the responsibility it handles. If two branches describe the same thing, they belong
+	together. If a branch has no clean name, that path probably wants its own function.
+	2. **Lift the guards out first.** Turn early-exit conditions into guard clauses (`if not user: return None`) so the happy path stays flat and left-aligned. Most of the count
+	is preconditions wrapped around the real work.
+	3. **Change the shape, do not just move it.** When every branch is the same kind of decision, reshape it: a long `if/elif` on a value is often a dict dispatch or
+	polymorphism, a nested loop often a comprehension or a generator. When polymorphism is not the right fit and the branches are genuinely separate jobs, extract one named
+	method per branch, each named for the responsibility it handles. The goal is fewer decisions in one place, not the same tangle split into `_part1` / `_part2` behind worse
+	names.
+	Reducing the number without reducing the tangle is not a fix. Do not merge conditions with `and`/`or` just to drop a branch, and do not rewrite `if` statements as ternaries
+	to slip under the check. The condition is still there for a human to hold in their head.
+	The test is not whether the number dropped. It is whether someone reading the function for the first time can hold it in their head at once. If not, it is still doing too
+	much.
+	GildedRose.cs:14</pre>
+						</div>
+					</section>
+					<section>
+						<video controls data-autoplay playsinline style="width: 100%;">
+							<source src="assets/Guilde%20rose%20coach%20demo.mov">
+						</video>
+					</section>
 				</section>
 
 				<section>
-					<h1>Custom Roslyn analyzers</h1>
+					<section>
+						<h1>Available rules</h1>
 
-					Maybe just a screenshot or gif here and move on to the next topic
+						<h2><a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview?tabs=net-10">See Microsoft learn</a></h2>
+						<br>
+						<h2 class="nwwz-green-dark fragment">Design rules</h2>
+						<h2 class="nwwz-green-dark fragment">Maintainability rules</h2>
+					</section>
+					<section>
+						<h1>Custom Roslyn analyzers</h1>
 
-					<aside class="notes">
-						Demo of async/await custom Roslyn analyzer
-					</aside>
+						<br>
+
+						<p>Implement a <span class="nwwz-blue">DiagnosticAnalyzer</span></p>
+						<p>and optionally a <span class="nwwz-blue">CodeFixProvider</span></p>
+						<aside class="notes">
+							Demo of async/await custom Roslyn analyzer
+						</aside>
+					</section>
 				</section>
 
 				<section>
@@ -449,24 +616,40 @@ Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
 					<section>
 						<h1>Workflow</h1>
 
-						<div style="display: flex; justify-content: center;">
-	<pre class="mermaid architecture-diagram workflow-diagram">
-%%{init: {'theme': 'base','block': {'padding': 24},'htmlLabels': false,'flowchart': {'htmlLabels': false},'themeVariables': {'background': '#181818',   'mainBkg': '#181818','primaryColor': '#2a2a2a',    'primaryTextColor': '#bbbbbb','primaryBorderColor': '#b8d7a3','secondaryColor': '#222222','secondaryTextColor': '#bbbbbb','secondaryBorderColor': '#b8d7a3','tertiaryColor': '#303030',
-'tertiaryTextColor': '#bbbbbb','tertiaryBorderColor': '#4dba85',       'lineColor': '#d8a0df','textColor': '#bbbbbb','titleColor': '#b8d7a3','nodeBorder': '#b8d7a3','clusterBkg': '#202020','clusterBorder': '#4dba85','edgeLabelBackground': '#181818','signalColor': '#d8a0df','signalTextColor': '#bbbbbb'}}}%%
-block-beta
-    columns 3
-    space ArchitectureDocument["Architecture document"] space
-    space:3
-    DiagHook["Rule violations"] space AI
-    space:3
-    space Code space
+						<svg class="workflow-cycle" viewBox="0 0 960 510" role="img" aria-labelledby="workflow-title workflow-description">
+							<title id="workflow-title">Architecture workflow cycle</title>
+							<desc id="workflow-description">Architecture document is referenced by AI. AI generates Code. Code might result in Rule violations, which augment the Architecture document.</desc>
+							<defs>
+								<marker id="workflow-arrowhead" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+									<path d="M 1 1 L 11 6 L 1 11 Z" fill="#d8a0df" />
+								</marker>
+							</defs>
 
-    ArchitectureDocument -- "refrenced" --> AI
-    AI -- "generates" --> Code
-    Code -- "might results" --> DiagHook
-    DiagHook -- "get augmented with" --> ArchitectureDocument
-	</pre>
-						</div>
+							<g class="workflow-arrows">
+								<path class="workflow-arrow" d="M 630 52 C 700 52 750 130 750 212" />
+								<path class="workflow-arrow" d="M 750 284 C 750 375 670 452 578 452" />
+								<path class="workflow-arrow" d="M 390 452 C 295 452 210 375 210 292" />
+								<path class="workflow-arrow" d="M 210 220 C 210 130 260 52 322 52" />
+							</g>
+
+							<g class="workflow-labels">
+								<text class="workflow-label" x="800" y="122">referenced</text>
+								<text class="workflow-label" x="800" y="382">generates</text>
+								<text class="workflow-label" x="170" y="382">might give</text>
+								<text class="workflow-label" x="170" y="108">coaches</text>
+							</g>
+
+							<g class="workflow-nodes">
+								<rect class="workflow-box" x="330" y="20" width="300" height="64" rx="12" />
+								<text x="480" y="52" dominant-baseline="middle">Architecture document</text>
+								<rect class="workflow-box" x="690" y="220" width="120" height="64" rx="12" />
+								<text x="750" y="252" dominant-baseline="middle">AI</text>
+								<rect class="workflow-box" x="390" y="420" width="180" height="64" rx="12" />
+								<text x="480" y="452" dominant-baseline="middle">Code</text>
+								<rect class="workflow-box" x="100" y="220" width="220" height="64" rx="12" />
+								<text x="210" y="252" dominant-baseline="middle">Rule violations</text>
+							</g>
+						</svg>
 					</section>
 					<section>
 						<h1>An example</h1>
@@ -495,15 +678,15 @@ block-beta
 					<br />
 					<div >
 						<div>
-							<h3 style="color: #d8a0df;">Rules are gamed easily</h3>
+							<h3 class="nwwz-purple">Rules are gamed easily</h3>
 							<br/>
 						</div>
 						<div>
-							<h3 style="color: #d8a0df;">Targeted coaching helps</h3>
+							<h3 class="nwwz-purple">Targeted coaching helps</h3>
 							<br/>
 						</div>
 						<div>
-							<h3 style="color: #d8a0df;">Roslyn is still great</h3>
+							<h3 class="nwwz-purple">Roslyn is still great</h3>
 							<br/>
 						</div>
 					</div>
@@ -547,52 +730,6 @@ block-beta
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealLoadContent, RevealMermaid],
 				mermaid: {  },
-				mermaidPlugin: {
-					afterRender: (element) => {
-						if (!element.classList.contains('workflow-diagram')) return;
-
-						// Block diagrams have fixed positions but no curved-edge option.
-						// Bend each arrow outward to emphasize the clockwise loop.
-						const ports = ['ArchitectureDocument', 'Code'].map((id) => {
-							const node = element.querySelector(`[id="${id}"]`);
-							const box = node.getBBox();
-							const matrix = node.transform.baseVal.consolidate().matrix;
-							const left = new DOMPoint(box.x, box.y + box.height / 2).matrixTransform(matrix);
-							const right = new DOMPoint(box.x + box.width, box.y + box.height / 2).matrixTransform(matrix);
-							return {
-								incoming: id === 'Code' ? right : left,
-								outgoing: id === 'Code' ? left : right,
-								direction: id === 'Code' ? -1 : 1,
-								touches: (point) =>
-									point.x >= left.x - 16 && point.x <= right.x + 16 &&
-									Math.abs(point.y - left.y) <= box.height / 2 + 16,
-							};
-						});
-
-						element.querySelectorAll('path.flowchart-link').forEach((path) => {
-							const start = path.getPointAtLength(0);
-							const end = path.getPointAtLength(path.getTotalLength());
-							const dx = end.x - start.x;
-							const dy = end.y - start.y;
-							const cx = (start.x + end.x) / 2 + dy * 0.25;
-							const cy = (start.y + end.y) / 2 - dx * 0.25;
-							const source = ports.find((port) => port.touches(start));
-							const target = ports.find((port) => port.touches(end));
-							if (source) {
-								const anchor = source.outgoing;
-								const bend = Math.max(40, Math.abs(end.x - anchor.x) * 0.6);
-								path.setAttribute('d', `M ${anchor.x},${anchor.y} C ${anchor.x + bend * source.direction},${anchor.y} ${cx},${cy} ${end.x},${end.y}`);
-							} else if (target) {
-								const anchor = target.incoming;
-								const bend = Math.max(40, Math.abs(anchor.x - start.x) * 0.6);
-								path.setAttribute('d', `M ${start.x},${start.y} C ${cx},${cy} ${anchor.x - bend * target.direction},${anchor.y} ${anchor.x},${anchor.y}`);
-							} else {
-								path.setAttribute('d', `M ${start.x},${start.y} Q ${cx},${cy} ${end.x},${end.y}`);
-							}
-							path.setAttribute('stroke-linecap', 'round');
-						});
-					},
-				},
 			});
 		</script>
 	</body>
