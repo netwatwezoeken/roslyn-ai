@@ -1,0 +1,1 @@
+To fix this run `dotnet format --diagnostics CA1822 --severity hidden`
