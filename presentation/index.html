@@ -210,7 +210,7 @@
 					<h1 style="font-size: 2.2em;">AI writes the code,</h1>
 					<h1 style="font-size: 2.2em;">Roslyn guards the rules</h1>
 					<br>
-					<span>Jos Hendriks { <span style="color: #d8a0df;">.NET wat we zoeken</span> }</span>
+					<span>Jos Hendriks { <span style="color: var(--nwwz-purple)">.NET wat we zoeken</span> }</span>
 					<aside class="notes">
 						<ul>
 							<li>Cmd+F1 to switch screens</li>
@@ -221,41 +221,31 @@
 				</section>
 
 				<section>
+					<h1>Linters</h1>
+					<br />
+					<h2 class="nwwz-blue">Linters result in indicators</h2>
+					<br />
+					<h2 class="fragment nwwz-green-dark">too many lines of code</h2>
+					<h2 class="fragment nwwz-green-dark">too many parameters</h2>
+				</section>
+
+				<section>
 					<h1>Static code analysis</h1>
 					<br />
 					<h2 class="fragment nwwz-green-dark">catch possible bugs</h2>
-					<h2 class="fragment" style="color: #4dba85;">identify security risk</h2>
-					<h2 class="fragment" style="color: #4dba85;">keep code maintainable</h2>
+					<h2 class="fragment nwwz-green-dark">identify security risk</h2>
+					<h2 class="fragment nwwz-green-dark">keep code maintainable</h2>
 					<aside class="notes">
 						That last one is interesting because that, in turn will prevent bugs, and security issues
 					</aside>
 				</section>
 
 				<section>
-					<h1>Linters result in indicators</h1>
-					<br />
-					<h2 class="fragment nwwz-green-dark">too many lines of code</h2>
-					<h2 class="fragment" style="color: #4dba85;">high complexity</h2>
-					<h2 class="fragment" style="color: #4dba85;">too many parameters</h2>
-				</section>
-
-				<section>
 					<h1>C# .NET has Roslyn</h1>
 					<br />
 					<h2 class="fragment nwwz-green-dark">compiler</h2>
-					<h2 class="fragment" style="color: #4dba85;">analyzer (linter)</h2>
-					<h2 class="fragment" style="color: #4dba85;">fixer</h2>
-				</section>
-
-				<section>
-					<h1>About me</h1>
-					<br /><h4 class="nwwz-green-dark">Jos Hendriks</h4>
-					<h4>dad | husband | cyclist | metalhead</h4>
-					<h4 class="nwwz-green-dark">Independent tech lead, technical coach, software architect</h4>
-					<h4>25 years in software in many different industries</h4>
-
-					<br /><span>✉️ jos@netwatwezoeken.nl</span>
-					<br /><span>📃 netwatwezoeken.nl</span>
+					<h2 class="fragment nwwz-green-dark">analyzer (linter)</h2>
+					<h2 class="fragment nwwz-green-dark">fixer</h2>
 					<aside class="notes">
 						A quick demo on Roslyn
 						<ul>
@@ -263,6 +253,17 @@
 							<li>console detection and fix</li>
 						</ul>
 					</aside>
+				</section>
+
+				<section>
+					<h1>About me</h1>
+					<br /><h4 class="nwwz-green-dark">Jos Hendriks</h4>
+					<h4>dad | husband | cyclist | metalhead</h4>
+					<h4 class="nwwz-green-dark">Independent tech lead, trainer, technical coach, software architect</h4>
+					<h4>25 years in software in many different industries</h4>
+
+					<br /><span>✉️ jos@netwatwezoeken.nl</span>
+					<br /><span>📃 netwatwezoeken.nl</span>
 				</section>
 
 				<section aria-label="A form">
@@ -329,9 +330,7 @@
 					<h1 style="font-size: 1.5em;">Well, maybe</h1>
 					<br/>
 					<svg viewBox="0 80 920 340" role="img" aria-labelledby="permit-split-title" style="display: block; width: 100%; margin: 12px auto;">
-						<g fill="#bbbbbb" font-family="inherit" font-size="20" text-anchor="middle">
-							<text x="300" y="215" font-size="54">→</text>
-						</g>
+						<path d="M 301.5 227.25 H 355.5 M 341.5 213.25 L 355.5 227.25 L 341.5 241.25" fill="none" stroke="#bbbbbb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
 						<g transform="translate(20 95) scale(1.15)">
 							<rect width="180" height="230" rx="10" fill="#222222" stroke="#4dba85" stroke-width="2" />
 							<g stroke="#bbbbbb" stroke-width="2" stroke-linecap="round">
@@ -417,7 +416,7 @@
 					</section>
 
 					<section>
-						<h1>When rules are measures....</h1>
+						<h1 style="font-size: 1.9em; white-space: nowrap;">Rules can become measures....</h1>
 						<blockquote class="fragment">
 							<p>
 								When a measure becomes a target, it ceases to be a good measure.
@@ -526,7 +525,7 @@ Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
 									<text class="flow-command fragment" data-fragment-index="4" x="330" y="377">diagnostic-hooks</text>
 									<text class="flow-detail fragment" data-fragment-index="4" x="330" y="405">Add applicable guides</text>
 								</g>
-								
+
 								<g aria-label="Stack of guides" class="fragment" data-fragment-index="3" transform="translate(20 -170)">
 									<path d="M 56 347 H 133 L 155 369 V 451 Q 155 457 149 457 H 56 Q 50 457 50 451 V 353 Q 50 347 56 347 Z" fill="#2a2a2a" stroke="var(--nwwz-blue)" stroke-width="2" />
 									<path d="M 133 347 V 369 H 155" fill="none" stroke="var(--nwwz-blue)" stroke-width="2" />
@@ -594,12 +593,44 @@ Time Elapsed 00:00:01.49
 				<section>
 					<section>
 						<h1>Available rules</h1>
-
-						<h2><a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview?tabs=net-10">See Microsoft learn</a></h2>
-						<br>
-						<h2 class="nwwz-green-dark fragment">Design rules</h2>
-						<h2 class="nwwz-green-dark fragment">Maintainability rules</h2>
+						<h2><a target="_blank" href="https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview?tabs=net-10">See Microsoft learn</a></h2>
+						<img data-src="assets/MSLearn.png">
 					</section>
+
+					<section>
+						<h1>Interesting rules</h1>
+						<h2 class="nwwz-green-dark fragment" data-fragment-index="1">Design rules</h2>
+						<h4 class="nwwz-blue fragment" data-fragment-index="1">CA1002: Do not expose generic lists</h4>
+						<h4 class="nwwz-blue fragment" data-fragment-index="1">CA1021: Avoid out parameters</h4>
+						<h4 class="nwwz-blue fragment" data-fragment-index="1">CA1031: Do not catch general exception types</h4>
+						<h2 class="nwwz-green-dark fragment" data-fragment-index="2">Maintainability rules</h2>
+						<h4 class="nwwz-blue fragment" data-fragment-index="2">CA1502: Avoid excessive complexity</h4>
+						<h4 class="nwwz-blue fragment" data-fragment-index="2">CA1505: Avoid unmaintainable code</h4>
+						<h4 class="nwwz-blue fragment" data-fragment-index="2">CA1506: Avoid excessive class coupling</h4>
+						<h4 class="nwwz-blue fragment" data-fragment-index="2">CA1508: Avoid dead conditional code</h4>
+					</section>
+
+					<section>
+						<h1>.editorconfig</h1>
+
+						<h2 class="nwwz-green-dark">Configure your rules here</h2>
+						<pre><code data-trim data-noescape>
+[*.cs]
+dotnet_diagnostic.CA1002.severity = warning
+dotnet_diagnostic.CA1021.severity = warning
+dotnet_diagnostic.CA1031.severity = warning
+dotnet_diagnostic.CA1502.severity = warning
+dotnet_diagnostic.CA1505.severity = warning
+dotnet_diagnostic.CA1506.severity = warning
+dotnet_diagnostic.CA1508.severity = warning
+						</code></pre>
+
+						<aside class="notes">
+							dotnet build understands
+							IDE understands
+						</aside>
+					</section>
+
 					<section>
 						<h1>Custom Roslyn analyzers</h1>
 
@@ -617,7 +648,9 @@ Time Elapsed 00:00:01.49
 					<section>
 						<h1>Taking it further</h1>
 
-						With Roslyn you can also analyze structure and dependencies
+						<p>With Roslyn you can also analyze structure and dependencies</p>
+						<br>
+						<h2 class="nwwz-green-dark">Use it for architectural guardrails</h2>
 
 						<aside class="notes">
 							Demo of async/await custom Roslyn analyzer
@@ -636,28 +669,28 @@ Time Elapsed 00:00:01.49
 							</defs>
 
 							<g class="workflow-arrows">
-								<path class="workflow-arrow" d="M 630 52 C 700 52 750 130 750 212" />
-								<path class="workflow-arrow" d="M 750 284 C 750 375 670 452 578 452" />
-								<path class="workflow-arrow" d="M 390 452 C 295 452 210 375 210 292" />
-								<path class="workflow-arrow" d="M 210 220 C 210 130 260 52 322 52" />
+								<path class="workflow-arrow fragment" data-fragment-index="1" d="M 630 52 C 700 52 750 130 750 212" />
+								<path class="workflow-arrow fragment" data-fragment-index="2" d="M 750 284 C 750 375 670 452 578 452" />
+								<path class="workflow-arrow fragment" data-fragment-index="3" d="M 390 452 C 295 452 210 375 210 292" />
+								<path class="workflow-arrow fragment" data-fragment-index="4" d="M 210 220 C 210 130 260 52 322 52" />
 							</g>
 
 							<g class="workflow-labels">
-								<text class="workflow-label" x="800" y="122">referenced</text>
-								<text class="workflow-label" x="800" y="382">generates</text>
-								<text class="workflow-label" x="170" y="382">might give</text>
-								<text class="workflow-label" x="170" y="108">coaches</text>
+								<text class="workflow-label fragment" data-fragment-index="1" x="800" y="122">referenced</text>
+								<text class="workflow-label fragment" data-fragment-index="2" x="800" y="382">generates</text>
+								<text class="workflow-label fragment" data-fragment-index="3" x="170" y="382">might give</text>
+								<text class="workflow-label fragment" data-fragment-index="4" x="170" y="108">coaches</text>
 							</g>
 
 							<g class="workflow-nodes">
 								<rect class="workflow-box" x="330" y="20" width="300" height="64" rx="12" />
 								<text x="480" y="52" dominant-baseline="middle">Architecture document</text>
-								<rect class="workflow-box" x="690" y="220" width="120" height="64" rx="12" />
-								<text x="750" y="252" dominant-baseline="middle">AI</text>
-								<rect class="workflow-box" x="390" y="420" width="180" height="64" rx="12" />
-								<text x="480" y="452" dominant-baseline="middle">Code</text>
-								<rect class="workflow-box" x="100" y="220" width="220" height="64" rx="12" />
-								<text x="210" y="252" dominant-baseline="middle">Rule violations</text>
+								<rect class="workflow-box fragment" data-fragment-index="1" x="690" y="220" width="120" height="64" rx="12" />
+								<text class="fragment" data-fragment-index="1" x="750" y="252" dominant-baseline="middle">AI</text>
+								<rect class="workflow-box fragment" data-fragment-index="2" x="390" y="420" width="180" height="64" rx="12" />
+								<text class="fragment" data-fragment-index="2" x="480" y="452" dominant-baseline="middle">Code</text>
+								<rect class="workflow-box fragment" data-fragment-index="3" x="100" y="220" width="220" height="64" rx="12" />
+								<text class="fragment" data-fragment-index="3" x="210" y="252" dominant-baseline="middle">Rule violations</text>
 							</g>
 						</svg>
 					</section>
