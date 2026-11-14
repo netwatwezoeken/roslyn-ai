@@ -39,6 +39,20 @@
 				transition: max-height 0.3s ease;
 			}
 
+			.reveal .author-avatar {
+				position: absolute;
+				top: 48px;
+				right: -60px;
+				width: 144px;
+				height: 144px;
+				max-width: none;
+				max-height: none;
+				margin: 0;
+				border: 3px solid var(--nwwz-green-light);
+				border-radius: 50%;
+				object-fit: cover;
+			}
+
 			.reveal .research-slide ul {
 				display: none;
 				font-size: 0.8em;
@@ -135,6 +149,34 @@
 				height: 420px;
 				max-width: 100% !important;
 			}
+			
+			.reveal .architecture-layers {
+				display: block;
+				width: 100%;
+				height: 420px;
+				margin: 20px auto 0;
+			}
+
+			.reveal .architecture-dependencies {
+				display: block;
+				width: 100%;
+				height: 420px;
+				margin: 20px auto 0;
+			}
+
+			.reveal .architecture-morph {
+				display: block;
+				width: 100%;
+				height: 420px;
+				margin: 20px auto 0;
+			}
+
+			.reveal .architecture-morph-trigger {
+				position: absolute;
+				width: 0;
+				height: 0;
+				overflow: hidden;
+			}
 
 			.reveal .workflow-cycle,
 			.reveal .hook-flow {
@@ -167,7 +209,7 @@
 
 			.reveal .workflow-cycle .workflow-label {
 				font-size: 20px;
-				fill: var(--nwwz-green-ligth);
+				fill: var(--nwwz-green-light);
 			}
 
 			.reveal .hook-flow .flow-box {
@@ -225,6 +267,7 @@
 					<br />
 					<h2 class="nwwz-blue">Linters result in indicators</h2>
 					<br />
+					<h2 class="fragment nwwz-green-dark">code styling</h2>
 					<h2 class="fragment nwwz-green-dark">too many lines of code</h2>
 					<h2 class="fragment nwwz-green-dark">too many parameters</h2>
 				</section>
@@ -234,9 +277,12 @@
 					<br />
 					<h2 class="fragment nwwz-green-dark">catch possible bugs</h2>
 					<h2 class="fragment nwwz-green-dark">identify security risk</h2>
-					<h2 class="fragment nwwz-green-dark">keep code maintainable</h2>
+					<h2 class="fragment nwwz-blue">identify unmaintainable code</h2>
 					<aside class="notes">
+						Linter usually use Static code analysis
+
 						That last one is interesting because that, in turn will prevent bugs, and security issues
+						This is what we will focus on in this session
 					</aside>
 				</section>
 
@@ -244,7 +290,7 @@
 					<h1>C# .NET has Roslyn</h1>
 					<br />
 					<h2 class="fragment nwwz-green-dark">compiler</h2>
-					<h2 class="fragment nwwz-green-dark">analyzer (linter)</h2>
+					<h2 class="fragment nwwz-blue">(static) analyzer</h2>
 					<h2 class="fragment nwwz-green-dark">fixer</h2>
 					<aside class="notes">
 						A quick demo on Roslyn
@@ -291,11 +337,11 @@
 				</section>
 
 				<section>
-					<h1>We need a rule</h1>
+					<h1>Research on forms</h1>
 					<br />
 					<p class="fragment">Research shows that forms with more than 6 questions are too cumbersome to fill in.</p>
 					<div class="fragment">
-						<p>Council decides that each form shall have <span style="color: #4dba85;">a maximum of 6 questions</span></p>
+						<p>A rule is formed: <span style="color: #4dba85;">a maximum of 6 questions per form</span></p>
 					</div>
 					<aside class="notes">
 						Counsil, government, etc
@@ -303,7 +349,7 @@
 				</section>
 
 				<section aria-label="Now we have a rule!">
-					<h1 style="font-size: 2.0em;">With a rule we can surely solve this</h1>
+					<h1 style="font-size: 2.0em;">The rule will solve our problems</h1>
 					<br/>
 					<svg viewBox="0 0 300 390" role="img" aria-label="Form with eleven question lines, the first six darkened" style="display: block; height: 350px; margin: 0 auto;">
 						<rect x="1" y="1" width="298" height="388" rx="12" fill="#222222" stroke="#4dba85" stroke-width="2" />
@@ -327,7 +373,7 @@
 				</section>
 
 				<section aria-label="If 6 is the rule then the easy way out is">
-					<h1 style="font-size: 1.5em;">Well, maybe</h1>
+					<h1 style="font-size: 1.5em;">The effect of just a rule</h1>
 					<br/>
 					<svg viewBox="0 80 920 340" role="img" aria-labelledby="permit-split-title" style="display: block; width: 100%; margin: 12px auto;">
 						<path d="M 301.5 227.25 H 355.5 M 341.5 213.25 L 355.5 227.25 L 341.5 241.25" fill="none" stroke="#bbbbbb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
@@ -364,7 +410,7 @@
 						</g>
 					</svg>
 					<br/>
-					<p style="color: var(--nwwz-green-dark); font-size: 0.8em;">Rule satisfied, but is it less complex?</p>
+					<p style="color: var(--nwwz-green-dark); font-size: 0.8em;">Rule satisfied, but is it less complex? Or just gaming the system?</p>
 				</section>
 				<section>
 					<section aria-label="Permit application: question lines darken on advance">
@@ -429,8 +475,91 @@
 				</section>
 				<section class="research-slide">
 					<h1>Tests on AI</h1>
+					<img class="author-avatar" src="assets/liina-suoniemi.jpg" alt="Liina Suoniemi" />
 
-					<img data-src="assets/research.png">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 900 418"
+						 font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif"
+						 role="img" aria-label="Genuine fix rate by how the instruction is phrased. Coaching prompt reaches 83.3% on both models, against 28.9% for Haiku and 5.6% for Sonnet when given only the linter message.">
+						<style>
+							.t1   { font-size: 21px; font-weight: 700; fill: #2d3748; }
+							.t2   { font-size: 14px; fill: #5b6676; }
+							.model{ font-size: 14px; font-weight: 700; fill: #2d3748; }
+							.cat  { font-size: 14px; fill: #5b6676; }
+							.val  { font-size: 14px; fill: #2d3748; }
+							.tick { font-size: 12px; fill: #8a93a0; }
+							.note { font-size: 12px; fill: #8a93a0; }
+							.grid { stroke: #d7d9d4; stroke-width: 1; }
+							.axis { stroke: #b9bdb6; stroke-width: 1; }
+							.ci   { stroke: #2d3748; stroke-width: 2; opacity: .55; }
+							.bar-ref { fill: none; stroke: #8a93a0; stroke-width: 2; stroke-dasharray: 5 4; }
+							@media (prefers-color-scheme: dark) {
+								.t1, .model, .val { fill: #EBECE9; }
+								.t2, .cat { fill: #9aa4b2; }
+								.tick, .note { fill: #7d8794; }
+								.grid { stroke: #3d3d3d; }
+								.axis { stroke: #55565a; }
+								.ci   { stroke: #EBECE9; opacity: .5; }
+								.bar-ref { stroke: #7d8794; }
+							}
+						</style>
+						<line class="axis" x1="208.0" y1="66" x2="208.0" y2="466"/>
+						<text class="tick" x="208.0" y="484" text-anchor="middle">0%</text>
+						<line class="grid" x1="362.5" y1="66" x2="362.5" y2="466"/>
+						<text class="tick" x="362.5" y="484" text-anchor="middle">25%</text>
+						<line class="grid" x1="517.0" y1="66" x2="517.0" y2="466"/>
+						<text class="tick" x="517.0" y="484" text-anchor="middle">50%</text>
+						<line class="grid" x1="671.5" y1="66" x2="671.5" y2="466"/>
+						<text class="tick" x="671.5" y="484" text-anchor="middle">75%</text>
+						<line class="grid" x1="826.0" y1="66" x2="826.0" y2="466"/>
+						<text class="tick" x="826.0" y="484" text-anchor="middle">100%</text>
+						<text class="model" x="14" y="108">Claude Haiku 4.5</text>
+						<g class="fragment" data-fragment-index="2">
+							<text class="cat" x="192" y="142.0" text-anchor="end">Coaching prompt</text>
+							<rect x="208" y="122" width="514.8" height="30" rx="4" fill="var(--nwwz-blue)"/>
+<!--							<line class="ci" x1="665.3" y1="137.0" x2="764.2" y2="137.0"/>
+							<line class="ci" x1="665.3" y1="131.0" x2="665.3" y2="143.0"/>
+							<line class="ci" x1="764.2" y1="131.0" x2="764.2" y2="143.0"/>-->
+							<text class="val" x="738.2" y="142.0" font-weight="700">83.3%</text>
+						</g>
+						<g class="fragment" data-fragment-index="1">
+							<text class="cat" x="192" y="184.0" text-anchor="end">Linter message only</text>
+							<rect x="208" y="164" width="178.6" height="30" rx="4" fill="var(--nwwz-green-light)"/>
+<!--							<line class="ci" x1="331.6" y1="179.0" x2="449.0" y2="179.0"/>
+							<line class="ci" x1="331.6" y1="173.0" x2="331.6" y2="185.0"/>
+							<line class="ci" x1="449.0" y1="173.0" x2="449.0" y2="185.0"/>-->
+							<text class="val" x="403.0" y="184.0">28.9%</text>
+						</g>
+						<text class="cat" x="192" y="226.0" text-anchor="end">No linter feedback</text>
+						<rect x="208" y="206" width="158.2" height="30" rx="4" fill="var(--nwwz-purple)"/>
+<!--						<line class="ci" x1="319.2" y1="221.0" x2="430.5" y2="221.0"/>
+						<line class="ci" x1="319.2" y1="215.0" x2="319.2" y2="227.0"/>
+						<line class="ci" x1="430.5" y1="215.0" x2="430.5" y2="227.0"/>-->
+						<text class="val" x="384.5" y="226.0">25.6%</text>
+						<text class="model" x="14" y="310">Claude Sonnet 4.6</text>
+						<g class="fragment" data-fragment-index="2">
+							<text class="cat" x="192" y="344.0" text-anchor="end">Coaching prompt</text>
+							<rect x="208" y="324" width="514.8" height="30" rx="4" fill="var(--nwwz-blue)"/>
+<!--							<line class="ci" x1="677.7" y1="339.0" x2="764.2" y2="339.0"/>
+							<line class="ci" x1="677.7" y1="333.0" x2="677.7" y2="345.0"/>
+							<line class="ci" x1="764.2" y1="333.0" x2="764.2" y2="345.0"/>-->
+							<text class="val" x="738.2" y="344.0" font-weight="700">83.3%</text>
+						</g>
+						<g class="fragment" data-fragment-index="1">
+							<text class="cat" x="192" y="386.0" text-anchor="end">Linter message only</text>
+							<rect x="208" y="366" width="34.6" height="30" rx="4" fill="var(--nwwz-green-light)"/>
+<!--							<line class="ci" x1="214.2" y1="381.0" x2="276.0" y2="381.0"/>
+							<line class="ci" x1="214.2" y1="375.0" x2="214.2" y2="387.0"/>
+							<line class="ci" x1="276.0" y1="375.0" x2="276.0" y2="387.0"/>-->
+							<text class="val" x="250.0" y="386.0">5.6%</text>
+						</g>
+						<text class="cat" x="192" y="428.0" text-anchor="end">No linter feedback</text>
+						<rect x="208" y="408" width="212.6" height="30" rx="4" fill="var(--nwwz-purple)"/>
+<!--						<line class="ci" x1="356.3" y1="423.0" x2="479.9" y2="423.0"/>
+						<line class="ci" x1="356.3" y1="417.0" x2="356.3" y2="429.0"/>
+						<line class="ci" x1="479.9" y1="417.0" x2="479.9" y2="429.0"/>-->
+						<text class="val" x="433.9" y="428.0">34.4%</text>
+					</svg>
+
 					<p>
 						<a href="https://github.com/LiinaSuoniemi/prompt-vs-metric-eval">https://github.com/LiinaSuoniemi/prompt-vs-metric-eval</a>
 					</p>
@@ -446,12 +575,13 @@
 				</section>
 				<section>
 					<h1>Habit hooks</h1>
+					<img class="author-avatar" src="assets/devill.jpg" alt="Ivett Ördög" />
 					<svg width="96" height="96" viewBox="0 0 256 256" role="img" aria-label="Habit Hooks">
 						<path fill="#f42372" d="M106.13,127.91c.42-.17.84-.34,1.24-.52,10.66-4.66,17.31-15.47,17.31-27.1v-52.33c0-11.23-9.2-20.29-20.38-19.35-9.63.81-17.19,8.88-17.19,18.72v61.79c0,.06-.05.1-.1.1h-21.9c-.06,0-.1-.05-.1-.1v-61.15c0-11.23-9.2-20.29-20.38-19.35-9.63.81-17.19,8.88-17.19,18.72v160.72c0,11.23,9.2,20.29,20.38,19.35,9.63-.81,17.19-8.88,17.19-18.72v-61.79c0-.06.05-.1.1-.1h21.9c.06,0,.1.05.1.1v61.15c0,11.23,9.2,20.29,20.38,19.35,9.63-.81,17.19-8.88,17.19-18.72v-52.97c0-11.63-6.65-22.44-17.31-27.1-.41-.18-.82-.35-1.24-.52-.08-.03-.08-.15,0-.18Z"></path>
 						<path fill="currentColor" d="M208.09,28.61c-9.43.82-17.1,9.69-17.1,19.15v61.45s-22.1,0-22.1,0v-61.45c0-9.46-7.67-18.33-17.1-19.15-11.14-.97-20.48,7.78-20.48,18.71v52.88c0,12.13,7.25,23.21,18.52,27.69.09.04.18.07.27.11-.09.04-.18.07-.27.11-11.27,4.48-18.52,15.56-18.52,27.69v52.44c0,9.46,7.67,18.33,17.1,19.15,11.14.97,20.48-7.78,20.48-18.71v-61.89h22.1v61.45c0,9.46,7.67,18.33,17.1,19.15,11.14.97,20.48-7.78,20.48-18.71V47.32c0-10.93-9.34-19.69-20.48-18.71Z"></path>
 					</svg>
 					<p>
-						<a href="https://habit-hooks.com/">https://habit-hooks.com/</a>
+						<a href="https://habit-hooks.com/">https://habit-hooks.com/</a> by Ivett Ördög
 					</p>
 					<h2 class="fragment nwwz-green-dark">Linter feedback can be a trigger</h2>
 					<h2 class="fragment nwwz-green-dark">A trigger results in additional coaching</h2>
@@ -499,7 +629,7 @@ Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
 							</g>
 
 							<g font-family="inherit" font-size="22" fill="#bbbbbb" text-anchor="middle">
-								<rect class="flow-box fragment" data-fragment-index="1" stroke="var(--nwwz-green-ligth)" x="10" y="15" width="190" height="90" rx="12" />
+								<rect class="flow-box fragment" data-fragment-index="1" stroke="var(--nwwz-green-light)" x="10" y="15" width="190" height="90" rx="12" />
 								<text class="flow-command fragment" data-fragment-index="1" x="105" y="52">dotnet build</text>
 								<text class="flow-detail fragment" data-fragment-index="1" x="105" y="80">run by LLM</text>
 
@@ -534,7 +664,7 @@ Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
 									<text x="95" y="488" fill="var(--nwwz-blue)">smells.json</text>
 								</g>
 
-								<rect class="flow-box fragment" data-fragment-index="5" stroke="var(--nwwz-green-ligth)" x="750" y="340" width="200" height="90" rx="12" />
+								<rect class="flow-box fragment" data-fragment-index="5" stroke="var(--nwwz-green-light)" x="750" y="340" width="200" height="90" rx="12" />
 								<text class="fragment" data-fragment-index="5" x="850" y="392">LLM acts</text>
 
 								<g aria-label="Stack of guides" class="fragment" data-fragment-index="4" transform="translate(0 20)">
@@ -599,15 +729,11 @@ Time Elapsed 00:00:01.49
 
 					<section>
 						<h1>Interesting rules</h1>
-						<h2 class="nwwz-green-dark fragment" data-fragment-index="1">Design rules</h2>
-						<h4 class="nwwz-blue fragment" data-fragment-index="1">CA1002: Do not expose generic lists</h4>
-						<h4 class="nwwz-blue fragment" data-fragment-index="1">CA1021: Avoid out parameters</h4>
-						<h4 class="nwwz-blue fragment" data-fragment-index="1">CA1031: Do not catch general exception types</h4>
-						<h2 class="nwwz-green-dark fragment" data-fragment-index="2">Maintainability rules</h2>
-						<h4 class="nwwz-blue fragment" data-fragment-index="2">CA1502: Avoid excessive complexity</h4>
-						<h4 class="nwwz-blue fragment" data-fragment-index="2">CA1505: Avoid unmaintainable code</h4>
-						<h4 class="nwwz-blue fragment" data-fragment-index="2">CA1506: Avoid excessive class coupling</h4>
-						<h4 class="nwwz-blue fragment" data-fragment-index="2">CA1508: Avoid dead conditional code</h4>
+						<h4 class="nwwz-blue">CA1031: Do not catch general exception types</h4>
+						<h4 class="nwwz-blue">CA1502: Avoid excessive complexity</h4>
+						<h4 class="nwwz-blue">CA1505: Avoid unmaintainable code</h4>
+						<h4 class="nwwz-blue">CA1506: Avoid excessive class coupling</h4>
+						<h4 class="nwwz-blue">CA1508: Avoid dead conditional code</h4>
 					</section>
 
 					<section>
@@ -616,8 +742,6 @@ Time Elapsed 00:00:01.49
 						<h2 class="nwwz-green-dark">Configure your rules here</h2>
 						<pre><code data-trim data-noescape>
 [*.cs]
-dotnet_diagnostic.CA1002.severity = warning
-dotnet_diagnostic.CA1021.severity = warning
 dotnet_diagnostic.CA1031.severity = warning
 dotnet_diagnostic.CA1502.severity = warning
 dotnet_diagnostic.CA1505.severity = warning
@@ -694,25 +818,75 @@ dotnet_diagnostic.CA1508.severity = warning
 							</g>
 						</svg>
 					</section>
-					<section>
-						<h1>An example</h1>
+					<section data-visibility="hidden">
+						<h1>Clean architecture example</h1>
 
-						<div style="display: flex; justify-content: center;">
-	<pre class="mermaid architecture-diagram">
-%%{init: {'theme': 'base','themeVariables': {'background': '#181818',   'mainBkg': '#181818','primaryColor': '#2a2a2a',    'primaryTextColor': '#bbbbbb','primaryBorderColor': '#b8d7a3','secondaryColor': '#222222','secondaryTextColor': '#bbbbbb','secondaryBorderColor': '#b8d7a3','tertiaryColor': '#303030',
-'tertiaryTextColor': '#bbbbbb','tertiaryBorderColor': '#4dba85',       'lineColor': '#d8a0df','textColor': '#bbbbbb','titleColor': '#b8d7a3','nodeBorder': '#b8d7a3','clusterBkg': '#202020','clusterBorder': '#4dba85','edgeLabelBackground': '#181818','signalColor': '#d8a0df','signalTextColor': '#bbbbbb'}}}%%
-		flowchart
-    Infrastructure --> Domain
-    Infrastructure --> Application
-    Presentation --> Application
-    Presentation --> Domain
-    Application --> Domain
-	</pre>
-						</div>
+						<svg class="architecture-layers" viewBox="0 0 800 500" role="img" aria-labelledby="architecture-title architecture-description">
+							<title id="architecture-title1">Clean architecture layers</title>
+							<desc id="architecture-description">Domain is at the center, surrounded by Application. The outer layer is split into Presentation and Infrastructure halves.</desc>
+							<circle cx="400" cy="270" r="220" fill="#181818" stroke="var(--nwwz-green-dark)" stroke-width="3" />
+							<line x1="180" y1="270" x2="620" y2="270" stroke="var(--nwwz-green-dark)" stroke-width="3" />
+							<circle cx="400" cy="270" r="150" fill="#181818" stroke="var(--nwwz-green-light)" stroke-width="3" />
+							<circle cx="400" cy="270" r="80" fill="none" stroke="var(--nwwz-blue)" stroke-width="3" />
+							<g font-family="inherit" text-anchor="middle" fill="#bbbbbb">
+								<text x="400" y="98" font-size="24">Infrastructure</text>
+								<text x="400" y="460" font-size="24">Presentation</text>
+								<text x="400" y="165" font-size="23">Application</text>
+								<text x="400" y="268" font-size="22" dominant-baseline="middle">Domain</text>
+							</g>
+						</svg>
 
 						<aside class="notes">
 							Demo Structure analyzer with diagnostic-hooks
 						</aside>
+					</section>
+					<section>
+						<h1>Clean architecture example</h1>
+
+						<span class="fragment architecture-morph-trigger" aria-hidden="true"></span>
+						<svg class="architecture-morph" viewBox="0 0 800 500" role="img" aria-labelledby="architecture-morph-title architecture-morph-description">
+							<title id="architecture-morph-title3">Architecture layers morph into a dependency graph</title>
+							<desc id="architecture-morph-description">An animated transition between concentric clean architecture layers and a graph showing Infrastructure and Presentation depending on Application and Domain, with Application also depending on Domain.</desc>
+							<defs>
+								<marker id="architecture-morph-arrowhead" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="14" markerHeight="14" orient="auto" markerUnits="userSpaceOnUse">
+									<path d="M 1 1 L 11 6 L 1 11 Z" fill="var(--nwwz-purple)" />
+								</marker>
+							</defs>
+							<g font-family="inherit" text-anchor="middle" fill="#bbbbbb">
+								<!-- The architecture layers themselves morph into the four graph nodes. -->
+								<path fill="#181818" stroke="var(--nwwz-green-dark)" stroke-width="3"
+									d="M 400 30 C 521.5 30 620 128.5 620 250 C 620 250 510 250 400 250 C 290 250 180 250 180 250 C 180 128.5 278.5 30 400 30 Z">
+									<animate attributeName="d" dur="1s" repeatCount="1" calcMode="spline" keyTimes="0;0.8;1" keySplines="0.4 0 0.2 1;0 0 1 1" values="M 400 30 C 521.5 30 620 128.5 620 250 C 620 250 510 250 400 250 C 290 250 180 250 180 250 C 180 128.5 278.5 30 400 30 Z;M 70 62 C 280 62 280 62 280 62 C 280 132 280 132 280 132 C 70 132 70 132 70 132 C 70 62 70 62 70 62 Z;M 70 62 C 280 62 280 62 280 62 C 280 132 280 132 280 132 C 70 132 70 132 70 132 C 70 62 70 62 70 62 Z" fill="freeze"/>
+								</path>
+								<path fill="#181818" stroke="var(--nwwz-green-dark)" stroke-width="3"
+									d="M 400 470 C 521.5 470 620 371.5 620 250 C 620 250 510 250 400 250 C 290 250 180 250 180 250 C 180 371.5 278.5 470 400 470 Z">
+									<animate attributeName="d" dur="1s" repeatCount="1" calcMode="spline" keyTimes="0;0.8;1" keySplines="0.4 0 0.2 1;0 0 1 1" values="M 400 470 C 521.5 470 620 371.5 620 250 C 620 250 510 250 400 250 C 290 250 180 250 180 250 C 180 371.5 278.5 470 400 470 Z;M 520 62 C 730 62 730 62 730 62 C 730 132 730 132 730 132 C 520 132 520 132 520 132 C 520 62 520 62 520 62 Z;M 520 62 C 730 62 730 62 730 62 C 730 132 730 132 730 132 C 520 132 520 132 520 132 C 520 62 520 62 520 62 Z" fill="freeze"/>
+								</path>
+								<path fill="#181818" stroke="var(--nwwz-green-light)" stroke-width="3"
+									d="M 400 100 C 482.8 100 550 167.2 550 250 C 550 332.8 482.8 400 400 400 C 317.2 400 250 332.8 250 250 C 250 167.2 317.2 100 400 100 Z">
+									<animate attributeName="d" dur="1s" repeatCount="1" calcMode="spline" keyTimes="0;0.8;1" keySplines="0.4 0 0.2 1;0 0 1 1" values="M 400 100 C 482.8 100 550 167.2 550 250 C 550 332.8 482.8 400 400 400 C 317.2 400 250 332.8 250 250 C 250 167.2 317.2 100 400 100 Z;M 285 220 C 515 220 515 220 515 220 C 515 290 515 290 515 290 C 285 290 285 290 285 290 C 285 220 285 220 285 220 Z;M 285 220 C 515 220 515 220 515 220 C 515 290 515 290 515 290 C 285 290 285 290 285 290 C 285 220 285 220 285 220 Z" fill="freeze"/>
+								</path>
+								<path fill="none" stroke="var(--nwwz-blue)" stroke-width="3"
+									d="M 400 170 C 444.2 170 480 205.8 480 250 C 480 294.2 444.2 330 400 330 C 355.8 330 320 294.2 320 250 C 320 205.8 355.8 170 400 170 Z">
+									<animate attributeName="d" dur="1s" repeatCount="1" calcMode="spline" keyTimes="0;0.8;1" keySplines="0.4 0 0.2 1;0 0 1 1" values="M 400 170 C 444.2 170 480 205.8 480 250 C 480 294.2 444.2 330 400 330 C 355.8 330 320 294.2 320 250 C 320 205.8 355.8 170 400 170 Z;M 285 365 C 515 365 515 365 515 365 C 515 435 515 435 515 435 C 285 435 285 435 285 435 C 285 365 285 365 285 365 Z;M 285 365 C 515 365 515 365 515 365 C 515 435 515 435 515 435 C 285 435 285 435 285 435 C 285 365 285 365 285 365 Z" fill="freeze"/>
+								</path>
+
+								<g fill="none" stroke="var(--nwwz-purple)" stroke-width="2" marker-end="url(#architecture-morph-arrowhead)">
+									<animate attributeName="opacity" values="0;1;1" keyTimes="0;0.8;1" dur="1s" repeatCount="1" fill="freeze"/>
+									<path d="M 250 132 C 280 170 330 180 365 220" />
+									<path d="M 550 132 C 520 170 470 180 435 220" />
+									<path d="M 400 290 V 365" />
+									<path d="M 175 132 V 330 C 175 369 206 400 245 400 H 285" />
+									<path d="M 625 132 V 330 C 625 369 594 400 555 400 H 515" />
+								</g>
+								<g font-size="24" dominant-baseline="middle">
+									<text font-size="24">Infrastructure<animate attributeName="x" values="400;175;175" keyTimes="0;0.8;1" dur="1s" repeatCount="1" fill="freeze"/><animate attributeName="y" values="58;97;97" keyTimes="0;0.8;1" dur="1s" repeatCount="1" fill="freeze"/></text>
+									<text font-size="24">Presentation<animate attributeName="x" values="400;625;625" keyTimes="0;0.8;1" dur="1s" repeatCount="1" fill="freeze"/><animate attributeName="y" values="440;97;97" keyTimes="0;0.8;1" dur="1s" repeatCount="1" fill="freeze"/></text>
+									<text font-size="23">Application<animate attributeName="x" values="400;400;400" keyTimes="0;0.8;1" dur="1s" repeatCount="1" fill="freeze"/><animate attributeName="y" values="145;255;255" keyTimes="0;0.8;1" dur="1s" repeatCount="1" fill="freeze"/></text>
+									<text font-size="22">Domain<animate attributeName="x" values="400;400;400" keyTimes="0;0.8;1" dur="1s" repeatCount="1" fill="freeze"/><animate attributeName="y" values="250;400;400" keyTimes="0;0.8;1" dur="1s" repeatCount="1" fill="freeze"/></text>
+								</g>
+							</g>
+						</svg>
 					</section>
 				</section>
 
@@ -721,7 +895,7 @@ dotnet_diagnostic.CA1508.severity = warning
 					<br />
 					<div >
 						<div>
-							<h3 class="nwwz-purple">Rules are gamed easily</h3>
+							<h3 class="nwwz-purple">Rules are gamed by LLMs</h3>
 							<br/>
 						</div>
 						<div>
@@ -729,7 +903,7 @@ dotnet_diagnostic.CA1508.severity = warning
 							<br/>
 						</div>
 						<div>
-							<h3 class="nwwz-purple">Roslyn is still great</h3>
+							<h3 class="nwwz-purple">Roslyn CA1502, CA1505 and CA1506 are most helpful</h3>
 							<br/>
 						</div>
 					</div>
@@ -764,6 +938,31 @@ dotnet_diagnostic.CA1508.severity = warning
 
 		<script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@11.12.3/plugin/mermaid/mermaid.js"></script>
 		<script>
+			function prepareArchitectureMorph(slide) {
+				const svg = slide?.querySelector('.architecture-morph');
+				if (!svg) return;
+
+				svg.pauseAnimations();
+				svg.setCurrentTime(0);
+			}
+
+			function startArchitectureMorph(slide) {
+				const svg = slide?.querySelector('.architecture-morph');
+				if (!svg) return;
+
+				svg.unpauseAnimations();
+				svg.setCurrentTime(0);
+				svg.querySelectorAll('animate').forEach(animation => animation.beginElement());
+			}
+
+			Reveal.on('ready', event => prepareArchitectureMorph(event.currentSlide));
+			Reveal.on('slidechanged', event => prepareArchitectureMorph(event.currentSlide));
+			Reveal.on('fragmentshown', event => {
+				if (event.fragment.classList.contains('architecture-morph-trigger')) {
+					startArchitectureMorph(event.fragment.closest('section'));
+				}
+			});
+
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
