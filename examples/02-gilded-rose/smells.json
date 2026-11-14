@@ -1,0 +1,5 @@
+{
+  "CA1822": "can-be-static",
+  "CA1502": "high-complexity",
+  "CA1505": "high-maintainability"
+}

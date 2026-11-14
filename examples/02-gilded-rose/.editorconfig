@@ -1,0 +1,7 @@
+[*.cs]
+;CA1502: Avoid excessive complexity
+;https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1502
+dotnet_diagnostic.CA1502.severity = warning
+;CA1505: Avoid unmaintainable code
+;https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1505
+dotnet_diagnostic.CA1505.severity = warning

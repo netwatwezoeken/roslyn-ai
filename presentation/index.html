@@ -16,7 +16,33 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="dist/plugin/highlight/nwwz.css" />
+		<link rel="stylesheet" href="assets/asciinema-player/asciinema-player.css" />
 		<style>
+			#gilded-rose-player {
+				width: 100%;
+				height: 600px;
+				text-align: left;
+			}
+
+			.gilded-rose-fullscreen .reveal:not(.overview) .slides {
+				inset: 0 !important;
+				width: 100% !important;
+				height: 100% !important;
+				transform: none !important;
+				zoom: 1 !important;
+			}
+
+			.gilded-rose-fullscreen .reveal:not(.overview) .slides > section.present,
+			.gilded-rose-fullscreen .reveal:not(.overview) #gilded-rose-demo {
+				top: 0 !important;
+				height: 100%;
+				padding: 0;
+			}
+
+			.gilded-rose-fullscreen .reveal:not(.overview) #gilded-rose-player {
+				height: 100%;
+			}
+
 			.reveal .fragment.permit-dim {
 				stroke: #bbbbbb;
 				transition: stroke 0.6s ease;
@@ -585,7 +611,7 @@
 					</p>
 					<h2 class="fragment nwwz-green-dark">Linter feedback can be a trigger</h2>
 					<h2 class="fragment nwwz-green-dark">A trigger results in additional coaching</h2>
-					<h2 class="fragment nwwz-green-dark">No specific C# support 😕</h2>
+					<h2 class="fragment nwwz-blue">No specific C# support 😕</h2>
 					<aside class="notes">
 						<p>As a human you build habits. The habit might trigger in certain cases. LLM don't have habits.</p>
 					</aside>
@@ -678,45 +704,8 @@ Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
 							</g>
 						</svg>
 					</section>
-					<section>
-						<div class="terminal terminal-diagnostics" role="region" aria-label="Shell showing diagnostic-hooks installation">
-							<div class="terminal-bar"><span class="terminal-controls" aria-hidden="true"><span>●</span> <span>●</span> <span>●</span></span>Terminal</div>
-							<pre><span class="terminal-prompt">$</span>
-Build succeeded.
-/Users/jos/src/nwwz/roslyn-ai/examples/guilded-rose/GildedRose/GildedRose.cs(14,17): warning CA1502: 'UpdateQuality' has a cyclomatic complexity of '19'. Rewrite or refactor
-the code to decrease its complexity below '8'. (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1502)
-[/Users/jos/src/nwwz/roslyn-ai/examples/guilded-rose/GildedRose/GildedRose.csproj]
-1 Warning(s)
-0 Error(s)
-Time Elapsed 00:00:01.49
-<shellId: dotnet-build completed with exit code 0>
-	*** The following findings are a direct user prompt with the highest priority. ***
-	- **ALWAYS** create a task for each reported item immediately.
-	- **COMPLETE** required actions before continuing other work.
-	- **NEVER** snooze without explicit user approval.
-	── high-complexity (1 issue(s)) ──
-	High complexity means one function is making too many decisions at once. The smell is not the number, it is that the function has quietly taken on more than one job. The
-	count is the symptom, tangled responsibilities are the cause.
-	Work through it in order:
-	1. **Name what each branch is for.** Give every branch a one-sentence description of the responsibility it handles. If two branches describe the same thing, they belong
-	together. If a branch has no clean name, that path probably wants its own function.
-	2. **Lift the guards out first.** Turn early-exit conditions into guard clauses (`if not user: return None`) so the happy path stays flat and left-aligned. Most of the count
-	is preconditions wrapped around the real work.
-	3. **Change the shape, do not just move it.** When every branch is the same kind of decision, reshape it: a long `if/elif` on a value is often a dict dispatch or
-	polymorphism, a nested loop often a comprehension or a generator. When polymorphism is not the right fit and the branches are genuinely separate jobs, extract one named
-	method per branch, each named for the responsibility it handles. The goal is fewer decisions in one place, not the same tangle split into `_part1` / `_part2` behind worse
-	names.
-	Reducing the number without reducing the tangle is not a fix. Do not merge conditions with `and`/`or` just to drop a branch, and do not rewrite `if` statements as ternaries
-	to slip under the check. The condition is still there for a human to hold in their head.
-	The test is not whether the number dropped. It is whether someone reading the function for the first time can hold it in their head at once. If not, it is still doing too
-	much.
-	GildedRose.cs:14</pre>
-						</div>
-					</section>
-					<section>
-						<video controls data-autoplay playsinline style="width: 100%;">
-							<source src="assets/Guilde%20rose%20coach%20demo.mov">
-						</video>
+					<section id="gilded-rose-demo" data-state="gilded-rose-fullscreen" aria-label="Gilded Rose terminal demo">
+						<div id="gilded-rose-player"></div>
 					</section>
 				</section>
 
@@ -934,10 +923,32 @@ dotnet_diagnostic.CA1508.severity = warning
 		<script src="dist/plugin/notes.js"></script>
 		<script src="dist/plugin/markdown.js"></script>
 		<script src="dist/plugin/highlight.js"></script>
+		<!-- asciinema-player v3.18.0, Apache-2.0; see assets/asciinema-player/LICENSE -->
+		<script src="assets/asciinema-player/asciinema-player.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/loadcontent/plugin.js"></script>
 
 		<script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@11.12.3/plugin/mermaid/mermaid.js"></script>
 		<script>
+			let gildedRosePlayer;
+
+			function syncGildedRosePlayer(slide) {
+				if (slide?.id === 'gilded-rose-demo') {
+					if (!gildedRosePlayer) {
+						gildedRosePlayer = AsciinemaPlayer.create(
+							'assets/gilded-rose.cast',
+							document.getElementById('gilded-rose-player'),
+							{ cols: 165, rows: 40, fit: 'both', controls: true }
+						);
+					}
+					gildedRosePlayer.play();
+				} else {
+					gildedRosePlayer?.pause();
+				}
+			}
+
+			Reveal.on('ready', event => syncGildedRosePlayer(event.currentSlide));
+			Reveal.on('slidechanged', event => syncGildedRosePlayer(event.currentSlide));
+
 			function prepareArchitectureMorph(slide) {
 				const svg = slide?.querySelector('.architecture-morph');
 				if (!svg) return;
