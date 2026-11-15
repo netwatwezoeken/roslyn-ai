@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CommentAnalyzer/CommentAnalyzer.csproj" />
+  <Project Path="PriceCalculator\PriceCalculator.csproj" />
+</Solution>

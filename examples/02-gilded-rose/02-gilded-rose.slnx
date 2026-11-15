@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/guidance/">
+    <File Path="guides\can-be-static.md" />
+    <File Path="guides\high-complexity.md" />
+    <File Path="guides\high-maintainability.md" />
+    <File Path="smells.json" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="GildedRose/GildedRose.csproj" />
+  <Project Path="GildedRoseTests/GildedRoseTests.csproj" />
+</Solution>

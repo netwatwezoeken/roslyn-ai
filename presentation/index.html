@@ -52,6 +52,25 @@
 				stroke: #333333;
 			}
 
+			.reveal .discount-comparison {
+				display: grid;
+				grid-template-rows: 1fr 1fr;
+				gap: 0.7em;
+			}
+
+			.reveal .discount-comparison-original {
+				transform: translateY(calc(50% + 0.35em));
+				transition: transform 0.6s ease;
+			}
+
+			.reveal .discount-comparison:has(.fragment.visible) .discount-comparison-original {
+				transform: translateY(0);
+			}
+
+			.reveal .discount-comparison .fragment {
+				transition-duration: 0.6s;
+			}
+
 			.reveal:not(.overview) .slides > .research-slide {
 				top: 5px !important;
 				padding-top: 0;
@@ -98,6 +117,31 @@
 				position: relative;
 				left: 50%;
 				transform: translateX(-50%);
+			}
+
+			.reveal:not(.overview) .slides .guides-slide {
+				top: 0 !important;
+				padding-top: 0;
+			}
+
+			.reveal .guides-slide h1 {
+				font-size: 1.9em;
+				margin-bottom: 12px;
+			}
+
+			.reveal .guides-slide pre {
+				width: 130%;
+				margin: 0 0 0 -15%;
+				font-size: 18px;
+				line-height: 1.3;
+			}
+
+			.reveal .guides-slide pre code {
+				max-height: none;
+				padding: 16px;
+				white-space: pre-wrap;
+				overflow-wrap: anywhere;
+				color: var(--r-main-color);
 			}
 
 			.reveal .terminal {
@@ -329,6 +373,7 @@
 
 				<section>
 					<h1>About me</h1>
+					<img class="author-avatar" src="assets/jos-hendriks-profile.png" alt="Jos Hendriks" />
 					<br /><h4 class="nwwz-green-dark">Jos Hendriks</h4>
 					<h4>dad | husband | cyclist | metalhead</h4>
 					<h4 class="nwwz-green-dark">Independent tech lead, trainer, technical coach, software architect</h4>
@@ -613,6 +658,7 @@
 					<h2 class="fragment nwwz-green-dark">A trigger results in additional coaching</h2>
 					<h2 class="fragment nwwz-blue">No specific C# support 😕</h2>
 					<aside class="notes">
+						Ivett Ördög
 						<p>As a human you build habits. The habit might trigger in certain cases. LLM don't have habits.</p>
 					</aside>
 				</section>
@@ -628,9 +674,6 @@
 You can invoke the tool using the following command: diagnostic-hooks
 Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
 						</div>
-						<aside class="notes">
-							<p>Demo time!</p>
-						</aside>
 					</section>
 					<section>
 						<h1>In a Copilot hook</h1>
@@ -703,6 +746,29 @@ Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
 								</g>
 							</g>
 						</svg>
+						<aside class="notes">
+							Of course this can be any harness
+						</aside>
+					</section>
+					<section class="guides-slide">
+						<h1>Important part: guides</h1>
+
+						<pre><code class="nohighlight">High complexity means one function is making too many decisions at once. The smell is not the number, it is that the function has quietly taken on more than one job. The count is the symptom, tangled responsibilities are the cause.
+
+Work through it in order:
+
+1. **Name what each branch is for.** Give every branch a one-sentence description of the responsibility it handles. If two branches describe the same thing, they belong together. If a branch has no clean name, that path probably wants its own function.
+2. **Lift the guards out first.** Turn early-exit conditions into guard clauses (`if not user: return None`) so the happy path stays flat and left-aligned. Most of the count is preconditions wrapped around the real work.
+3. **Change the shape, do not just move it.** When every branch is the same kind of decision, reshape it: a long `if/elif` on a value is often a dict dispatch or polymorphism, a nested loop often a comprehension or a generator. When polymorphism is not the right fit and the branches are genuinely separate jobs, extract one named method per branch, each named for the responsibility it handles. The goal is fewer decisions in one place, not the same tangle split into `_part1` / `_part2` behind worse names.
+
+Reducing the number without reducing the tangle is not a fix. Do not merge conditions with `and`/`or` just to drop a branch, and do not rewrite `if` statements as ternaries to slip under the check. The condition is still there for a human to hold in their head.
+
+The test is not whether the number dropped. It is whether someone reading the function for the first time can hold it in their head at once. If not, it is still doing too much.
+						</code></pre>
+
+						<aside class="notes">
+							<p>Demo time!</p>
+						</aside>
 					</section>
 					<section id="gilded-rose-demo" data-state="gilded-rose-fullscreen" aria-label="Gilded Rose terminal demo">
 						<div id="gilded-rose-player"></div>
@@ -717,19 +783,17 @@ Tool 'diagnostic-hooks' (version '0.0.1') was successfully installed.</pre>
 					</section>
 
 					<section>
-						<h1>Interesting rules</h1>
-						<h4 class="nwwz-blue">CA1031: Do not catch general exception types</h4>
-						<h4 class="nwwz-blue">CA1502: Avoid excessive complexity</h4>
-						<h4 class="nwwz-blue">CA1505: Avoid unmaintainable code</h4>
-						<h4 class="nwwz-blue">CA1506: Avoid excessive class coupling</h4>
-						<h4 class="nwwz-blue">CA1508: Avoid dead conditional code</h4>
+						<h1>Useful rules</h1>
+						<h4 class="nwwz-blue">CA1031: <span class="nwwz-green-dark">Do not catch general exception types</span></h4>
+						<h4 class="nwwz-blue">CA1502: <span class="nwwz-green-dark">Avoid excessive complexity</span></h4>
+						<h4 class="nwwz-blue">CA1505: <span class="nwwz-green-dark">Avoid unmaintainable code</span></h4>
+						<h4 class="nwwz-blue">CA1506: <span class="nwwz-green-dark">Avoid excessive class coupling</span></h4>
 					</section>
 
 					<section>
-						<h1>.editorconfig</h1>
+						<h1>Configure your rules</h1>
 
-						<h2 class="nwwz-green-dark">Configure your rules here</h2>
-						<pre><code data-trim data-noescape>
+						<h4 class="nwwz-green-dark">.editorconfig</h4><pre><code data-trim data-noescape>
 [*.cs]
 dotnet_diagnostic.CA1031.severity = warning
 dotnet_diagnostic.CA1502.severity = warning
@@ -738,12 +802,20 @@ dotnet_diagnostic.CA1506.severity = warning
 dotnet_diagnostic.CA1508.severity = warning
 						</code></pre>
 
+						<h4 class="nwwz-green-dark">CodeMetricsConfig.txt</h4><pre><code data-trim data-noescape>
+CA1502: 7
+CA1502(Type): 7
+CA1502(Method): 7
+CA1505: 70
+						</code></pre>
 						<aside class="notes">
 							dotnet build understands
 							IDE understands
 						</aside>
 					</section>
+				</section>
 
+				<section>
 					<section>
 						<h1>Custom Roslyn analyzers</h1>
 
@@ -752,7 +824,60 @@ dotnet_diagnostic.CA1508.severity = warning
 						<p>Implement a <span class="nwwz-blue">DiagnosticAnalyzer</span></p>
 						<p>and optionally a <span class="nwwz-blue">CodeFixProvider</span></p>
 						<aside class="notes">
-							Demo of async/await custom Roslyn analyzer
+							CodeFixes are nice, but they kind of beat the purpose of coaching, just apply it.
+						</aside>
+					</section>
+
+					<section>
+						<h1>I hate comments</h1>
+						<div class="discount-comparison">
+							<div class="discount-comparison-original" style="display: flex; align-items: center; justify-content: center; gap: 0.4em;">
+								<pre><code>
+//
+// When user is premium the multiply price by 0.9
+//
+if (user.isPremium) {
+  price *= 0.9;
+}</code></pre>
+							</div>
+						</div>
+						<aside class="notes">
+							<p>Insulting</p>
+							<p>Lies -> never updated</p>
+							<p>Just code screaming to be written</p>
+						</aside>
+					</section>
+
+					<section>
+						<div class="discount-comparison">
+							<div class="discount-comparison-original" style="display: flex; align-items: center; justify-content: center; gap: 0.4em;">
+								<pre><code>
+// Apply a 10% holiday discount for all premium users.
+// This is for the Q4 campaign and must be removed after Jan 31st.
+// See ticket JIRA-512 for the official request from Marketing.
+if (user.isPremium) {
+  price *= 0.9;
+}</code></pre>
+								<span class="fragment fade-in" data-fragment-index="0" role="img" aria-label="Incorrect" style="color: #d32f2f; font-size: 1.5em; font-weight: bold;">✗</span>
+							</div>
+							<div class="fragment fade-in" data-fragment-index="0" style="display: flex; align-items: center; justify-content: center; gap: 0.4em;">
+								<pre><code>
+public decimal ApplyPremiumUserQ4HolidayDiscount(decimal normalPrice)
+{
+	if (user.isPremium &&
+		ITimeProvider.GetLocalNow().Date < new DateTime(2027, 1, 31))
+	{
+		return normalPrice * 0.9;
+	}
+
+	return normalPrice;
+}
+								</code></pre>
+								<span role="img" aria-label="Correct" style="color: #2e7d32; font-size: 1.5em; font-weight: bold;">✓</span>
+							</div>
+						</div>
+						<aside class="notes">
+							Demo of custom comment Roslyn analyzer
 						</aside>
 					</section>
 				</section>
